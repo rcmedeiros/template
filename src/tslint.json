@@ -1,0 +1,7 @@
+{
+    "extends": "@rcmedeiros/tslint-config",
+    "rules": {
+        "no-magic-numbers": false,
+        "no-unused-variable": false
+    }
+}

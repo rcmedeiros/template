@@ -1,0 +1,12 @@
+{
+    "extends": "@listo/tslint-config",
+    "rules": {
+        "object-literal-sort-keys": false,
+        "no-unused-expression": false,
+        "no-magic-numbers": false,
+        "no-implicit-dependencies": [
+            true,
+            "dev"
+        ]
+    }
+}
