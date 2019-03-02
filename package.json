@@ -1,0 +1,36 @@
+{
+  "name": "@rcmedeiros/template",
+  "version": "1.0.0-dev",
+  "description": "Dummy project",
+  "main": "index",
+  "scripts": {
+    "build-ts": "tsc -p tsconfig.json & cp \"package.json\" \"dist/\"",
+    "watch-ts": "tsc -d -w",
+    "tslint": "tslint --project tsconfig.json --config src/tslint.json",
+    "test": "nyc mocha -r ts-node/register test/*",
+    "coverage": "nyc check-coverage --statements 99 --functions 99"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcmedeiros/template.git"
+  },
+  "author": "Rafael Medeiros <rafael@rafaelmedeiros.eti.br>",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/rcmedeiros/tslint-config/issues"
+  },
+  "homepage": "https://github.com/rcmedeiros/tslint-config#readme",
+  "devDependencies": {
+    "@rcmedeiros/tslint-config": "^1.0.2",
+    "@types/express": "^4.16.1",
+    "@types/figlet": "^1.2.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "tslint": "^5.13.1",
+    "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "figlet": "^1.2.1"
+  }
+}
