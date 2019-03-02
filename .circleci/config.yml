@@ -1,0 +1,47 @@
+version: 2
+jobs:
+  stamp:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
+      - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - package.json
+            - .npmrc
+  publish_develop:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run: echo publish DEV
+  publish_master:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run: echo publish MASTER
+workflows:
+  version: 2
+  publish:
+    jobs:
+      - stamp
+      - publish_develop:
+          requires:
+            - stamp
+          filters:
+            branches:
+              only: develop
+      - publish_master:
+          requires:
+            - stamp
+          filters:
+            branches:
+              only: master
