@@ -1,13 +1,9 @@
 import { DummyServer } from './dummy_server';
 
-let s: DummyServer = new DummyServer();
-s.listen()
-
+new DummyServer().listen()
     .then((server: DummyServer) => {
-        s = server;
+        // ok
     })
     .catch((err: Error) => {
         console.error(err);
     });
-
-export = s;

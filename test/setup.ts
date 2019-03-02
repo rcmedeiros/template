@@ -1,14 +1,19 @@
 import { before, after, describe } from "mocha"
-import s from '../src/index';
+import { DummyServer } from '../src/dummy_server';
 
-describe('server', () => {
-    before(async (done) => {
-        s.listen().then(() => {
+let s: DummyServer = new DummyServer();
+before((done) => {
+    s.listen().then(() => {
+        done();
+    })
+});
+
+after((done) => {
+    s.close()
+        .then(() => {
             done();
         })
-    });
-
-    after(async () => {
-        await s.close();
-    });
+        .catch((err: Error) => {
+            done(err);
+        });
 });

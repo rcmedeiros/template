@@ -30,7 +30,6 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}\\dist\\index",
-            "preLaunchTask": "npm: build-ts",
             "outFiles": [
                 "${workspaceFolder}/dist/**/*.js"
             ]

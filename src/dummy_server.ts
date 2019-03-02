@@ -17,6 +17,7 @@ interface Closable {
 }
 
 export class DummyServer {
+    private readonly LIST: Array<string> = ['Green Tea', 'Himalaya Darjeeling', 'Earl Grey tea'];
     private readonly app: core.Express;
     private readonly moduleInfo: ModuleInfo;
     private server: http.Server;
@@ -24,19 +25,21 @@ export class DummyServer {
     constructor() {
         this.app = e();
 
-        this.app.use('/', (request: Request, response: Response) => {
-            response.json(['Green Tea', 'Himalaya Darjeeling', 'Earl Grey tea']);
-        });
         this.app.use('/coffee', (request: Request, response: Response) => {
             response.sendStatus(418);
         });
         this.app.use('/tea', (request: Request, response: Response) => {
-            const t: string = request.query.t || request.body.t;
+            const t: string = request.query ? request.query.t : request.body ? request.body.t : undefined;
             if (!(t)) {
                 response.send('Which one?');
+            } else if (!this.LIST.includes(t)) {
+                response.send(`${t} unavailable. Try another.`);
             } else {
                 response.json({ tea: t });
             }
+        });
+        this.app.use('/', (request: Request, response: Response) => {
+            response.json(this.LIST);
         });
         this.app.use('*', (_request: Request, response: Response) => {
             response.sendStatus(404);

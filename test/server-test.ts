@@ -7,23 +7,22 @@ import http, { IncomingMessage } from 'http';
 
 describe('/', () => {
     it('should return 200', (done) => {
-        console.debug('NODE_ENV' + process.env.NODE_ENV);
         http.get('http://localhost:8080', (res: IncomingMessage) => {
             expect(res.statusCode).to.be.equal(200)
             done();
         });
     });
 
-    it('should say "Hello, world!"', (done) => {
+    it('should display list', (done) => {
         http.get('http://localhost:8080', (res) => {
-            var data = '';
-
-            res.on('data', (chunk) => {
-                data += chunk;
-            });
-
+            let data = '';
+            res.on('data', (chunk) => { data += chunk });
             res.on('end', () => {
-                expect(JSON.parse(data)).to.be.an('array').that.contains('Earl Grey tea');
+                expect(JSON.parse(data)).to.be.an('array')
+                    .which.contains('Green Tea')
+                    .which.contains('Himalaya Darjeeling')
+                    .which.contains('Earl Grey tea')
+                    .which.does.not.contains('Brockley breakfast tea');
                 done();
             });
         });
