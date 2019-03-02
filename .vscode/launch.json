@@ -7,6 +7,27 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Test current file",
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "env": {
+                "TS_NODE_PROJECT": "tsconfig.json"
+            },
+            "args": [
+                "--ui",
+                "tdd",
+                "--timeout",
+                "4000",
+                "--colors",
+                "--require",
+                "ts-node/register",
+                "${relativeFile}"
+            ],
+            "cwd": "${workspaceRoot}",
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}\\dist\\index",
             "preLaunchTask": "npm: build-ts",

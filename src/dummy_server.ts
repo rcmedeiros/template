@@ -1,8 +1,9 @@
+// tslint:disable: no-unsafe-any no-implicit-dependencies
 import e, { NextFunction, Request, Response, Router } from 'express';
-// tslint:disable-next-line:no-implicit-dependencies
 import * as core from 'express-serve-static-core';
 import figlet from 'figlet';
 import fs from 'fs';
+import * as http from 'http';
 import path from 'path';
 
 interface ModuleInfo {
@@ -11,42 +12,60 @@ interface ModuleInfo {
     description: string;
 }
 
+interface Closable {
+    close(callback?: Function): this;
+}
+
 export class DummyServer {
     private readonly app: core.Express;
-    private moduleInfo: ModuleInfo;
+    private readonly moduleInfo: ModuleInfo;
+    private server: http.Server;
 
     constructor() {
         this.app = e();
 
-        this.app.use('/foobar', (_request: Request, response: Response, next: NextFunction) => {
-            response.status(200).json({ hello: 'world' });
-            next();
+        this.app.use('/', (request: Request, response: Response) => {
+            response.json(['Green Tea', 'Himalaya Darjeeling', 'Earl Grey tea']);
+        });
+        this.app.use('/coffee', (request: Request, response: Response) => {
+            response.sendStatus(418);
+        });
+        this.app.use('/tea', (request: Request, response: Response) => {
+            const t: string = request.query.t || request.body.t;
+            if (!(t)) {
+                response.send('Which one?');
+            } else {
+                response.json({ tea: t });
+            }
+        });
+        this.app.use('*', (_request: Request, response: Response) => {
+            response.sendStatus(404);
         });
 
-        this.loadModuleInfo();
+        this.moduleInfo = this.getModuleInfo();
 
     }
 
-    private loadModuleInfo(): void {
+    private getModuleInfo(): ModuleInfo {
         let filename: string = 'package.json';
 
         while (!fs.existsSync(path.join(__dirname, filename))) {
             filename = '../' + filename;
         }
 
-        const packageJson: Buffer = fs.readFileSync(filename);
+        const packageJson: Buffer = fs.readFileSync(path.join(__dirname, filename));
         const project: unknown = JSON.parse(packageJson.toString('utf-8'));
 
-        this.moduleInfo = {
+        return {
             name: (project as ModuleInfo).name,
             version: (project as ModuleInfo).version,
             description: (project as ModuleInfo).description,
         };
     }
 
-    public async listen(): Promise<void> {
+    public async listen(): Promise<DummyServer> {
         return new Promise((resolve: Function, reject: Function): void => {
-            this.app.listen(this.app.get('port'), () => {
+            this.server = this.app.listen(8080, () => {
                 figlet.text('Dummy Online', {
                     font: 'Star Wars',
                     horizontalLayout: 'default',
@@ -56,9 +75,21 @@ export class DummyServer {
                         reject(err);
                     } else {
                         console.info(`${data}\nv${this.moduleInfo.version}\n`);
-                        resolve();
+                        resolve(this);
                     }
                 });
+            });
+        });
+    }
+
+    public async close(): Promise<void> {
+        return new Promise((resolve: Function, reject: Function): void => {
+            this.server.close((err: Error) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
             });
         });
     }

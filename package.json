@@ -7,7 +7,7 @@
     "build-ts": "tsc -p tsconfig.json & cp \"package.json\" \"dist/\"",
     "watch-ts": "tsc -d -w",
     "tslint": "tslint --project tsconfig.json --config src/tslint.json",
-    "test": "nyc mocha -r ts-node/register test/*",
+    "test": "mocha -r ts-node/register test/*-test.ts",
     "coverage": "nyc check-coverage --statements 99 --functions 99"
   },
   "repository": {
@@ -22,10 +22,13 @@
   "homepage": "https://github.com/rcmedeiros/tslint-config#readme",
   "devDependencies": {
     "@rcmedeiros/tslint-config": "^1.0.2",
+    "@types/chai": "^4.1.7",
     "@types/express": "^4.16.1",
     "@types/figlet": "^1.2.0",
+    "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "mocha": "^6.0.2",
+    "ts-node": "^7.0.1",
     "tslint": "^5.13.1",
     "typescript": "^3.3.3333"
   },
