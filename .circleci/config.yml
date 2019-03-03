@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-      - run: echo 'export VERSION="TRALALA"' >> $BASH_ENV
+      - run: echo 'export VERSION="$(cat package.json)"' >> $BASH_ENV
       - run: source $BASH_ENV
       - run: echo "${VERSION}"
       - persist_to_workspace:
