@@ -139,14 +139,14 @@ workflows:
       #     filters:
       #       branches:
       #         only: develop
-      # - dependencies:
-      #     filters:
-      #       branches:
-      #         only: develop
-      # - dev_dependencies:
-      #     filters:
-      #       branches:
-      #         only: develop
+      - dependencies:
+          filters:
+            branches:
+              only: develop
+      - dev_dependencies:
+          filters:
+            branches:
+              only: develop
       # - docs:
       #     filters:
       #       branches:
