@@ -116,10 +116,10 @@ jobs:
       - attach_workspace:
           at: ./
       - run: |
-          echo 'export RELEASE="$(cat package.json | jq -r '.version' | cut -f1
-          -d'-')"' >> $BASH_ENV
+          echo 'export RELEASE="$(cat package.json | jq -r '.version' | cut -f1 -d'-')"' >> $BASH_ENV
           source $BASH_ENV
       - run: echo "${RELEASE}"
+      - run: echo "${CIRCLE_WORKFLOW_ID}"
       - save_cache:
           key: v{{ .Environment.RELEASE }}
           paths:
