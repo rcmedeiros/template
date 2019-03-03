@@ -114,6 +114,7 @@ jobs:
       - attach_workspace:
           at: ./
       - run: |
+          mkdir .circleci
           cat package.json | jq -r '.version' | cut -f1 -d'-' > .circleci/.release
       - save_cache:
           key: release{{ checksum ".circleci/.release" }}
@@ -124,9 +125,8 @@ jobs:
     docker:
       - image: circleci/node:10
     steps:
-      - run: |
-          mkdir .circleci
-          echo "CIRCLE_TAG" > .circleci/.release
+      - checkout
+      - run: echo "${CIRCLE_TAG}" > .circleci/.release
       - restore_cache:
           key: dependencies-{{ checksum ".circleci/.release" }}
       - run: sudo apt-get install tree -y && tree -a
@@ -141,6 +141,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
+      - run: sudo apt-get install tree -y && tree -a
       - run: npm publish --access public --dry-run
 
 workflows:
@@ -234,6 +235,7 @@ workflows:
             - stamp
             - test
             - docs
+            - code_review
           filters:
             branches:
               only: master
@@ -241,6 +243,8 @@ workflows:
     jobs:
       - check_release:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
       - hold:
@@ -248,11 +252,15 @@ workflows:
           requires:
             - check_release
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
       - deploy_release:
           requires:
             - hold
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
