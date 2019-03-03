@@ -121,7 +121,11 @@ jobs:
       - run: echo "${RELEASE}"
       - run: echo "${CIRCLE_WORKFLOW_ID}"
       - save_cache:
-          key: v{{ .Environment.RELEASE }}
+          key: release{{ checksum "0.9.0" }}
+          paths:
+            - ./
+      - save_cache:
+          key: release{{ checksum "${RELEASE}" }}
           paths:
             - ./
 
