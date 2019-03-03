@@ -136,11 +136,11 @@ jobs:
 #                   at: ./
 #             - run: npm publish --access public --dry-run
 
-# workflows:
-#     version: 2
-#     publish:
-#         jobs:
-#             - stamp
+workflows:
+    version: 2
+    publish:
+        jobs:
+            - stamp
 #             - dependencies
 #             - dev_dependencies
 #             - docs
