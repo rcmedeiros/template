@@ -52,7 +52,7 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      - run: npm run tslint
+      - run: ./node_modules/.bin/tslint --project tsconfig.json --config src/tslint.json
 
   # build_dev:
   #   docker:
