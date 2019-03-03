@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - run: npm install --production
-      - run: head -4 package.json
+      - run: cat package.json
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}
           paths:
@@ -32,7 +32,7 @@ jobs:
     steps:
       - checkout
       - run: npm install --only=dev
-      - run: head -4 package.json
+      - run: cat package.json
       - save_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
           paths:
@@ -50,7 +50,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: head -4 package.json
+      - run: cat package.json
       - restore_cache:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
