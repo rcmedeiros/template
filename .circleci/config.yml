@@ -150,9 +150,9 @@ workflows:
       #       branches:
       #         only: develop
       - code_review:
-          requires:
-            - dev_dependencies
-            - dependencies
+          # requires:
+          #   - dev_dependencies
+          #   - dependencies
           filters:
             branches:
               only: develop
