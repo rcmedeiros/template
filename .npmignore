@@ -1,0 +1,8 @@
+.circleci
+.npmignore
+.vscode
+tsconfig.json
+tslint.json
+mkdocs.yml
+test
+docs
