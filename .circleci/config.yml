@@ -7,7 +7,7 @@ jobs:
             - checkout
             - run: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
             - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-            - run: cat package.json | jq -r '.version'
+            - run: cat package.json | jq -r '.version' | cut -f1 -d"-"
             - run: cat /etc/*-release
             - persist_to_workspace:
                   root: ./
