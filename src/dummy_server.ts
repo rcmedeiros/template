@@ -1,5 +1,6 @@
 // tslint:disable: no-unsafe-any no-implicit-dependencies
-import e, { NextFunction, Request, Response, Router } from 'express';
+import bodyParser from 'body-parser';
+import e, { NextFunction, Request, Response } from 'express';
 import * as core from 'express-serve-static-core';
 import figlet from 'figlet';
 import fs from 'fs';
@@ -25,11 +26,15 @@ export class DummyServer {
     constructor() {
         this.app = e();
 
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(bodyParser.raw());
+
         this.app.use('/coffee', (request: Request, response: Response) => {
             response.sendStatus(418);
         });
         this.app.use('/tea', (request: Request, response: Response) => {
-            const t: string = request.query ? request.query.t : request.body ? request.body.t : undefined;
+            const t: string = request.query && request.query.t ? request.query.t : request.body && request.body.t ? request.body.t : undefined;
             if (!(t)) {
                 response.send('Which one?');
             } else if (!this.LIST.includes(t)) {
@@ -38,11 +43,14 @@ export class DummyServer {
                 response.json({ tea: t });
             }
         });
-        this.app.use('/', (request: Request, response: Response) => {
-            response.json(this.LIST);
-        });
-        this.app.use('*', (_request: Request, response: Response) => {
-            response.sendStatus(404);
+
+        // This route matches even unknown routes that starts with /. Thus the conditional
+        this.app.use('/', (request: Request, response: Response, next: NextFunction) => {
+            if (request.path === '/') {
+                response.json(this.LIST);
+            } else {
+                next();
+            }
         });
 
         this.moduleInfo = this.getModuleInfo();
@@ -74,7 +82,7 @@ export class DummyServer {
                     horizontalLayout: 'default',
                     verticalLayout: 'default',
                 }, (err: Error, data: string) => {
-                    if (err) {
+                    if (err) {/* istanbul ignore next */
                         reject(err);
                     } else {
                         console.info(`${data}\nv${this.moduleInfo.version}\n`);
@@ -88,7 +96,7 @@ export class DummyServer {
     public async close(): Promise<void> {
         return new Promise((resolve: Function, reject: Function): void => {
             this.server.close((err: Error) => {
-                if (err) {
+                if (err) {/* istanbul ignore next */
                     reject(err);
                 } else {
                     resolve();

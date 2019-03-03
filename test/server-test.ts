@@ -4,9 +4,8 @@ import chaiHttp from 'chai-http';
 
 chai.use(chaiHttp)
 
-describe('/', () => {
-    it('should display list and return 200', (done) => {
-
+describe('server', () => {
+    it('should display list when root', (done) => {
         chai.request('http://localhost:8080')
             .get('/')
             .end((err, res) => {
@@ -16,6 +15,15 @@ describe('/', () => {
                     .which.contains('Himalaya Darjeeling')
                     .which.contains('Earl Grey tea')
                     .which.does.not.contains('Brockley breakfast tea');
+                done(err);
+            });
+    });
+
+    it('should treat 404', (done) => {
+        chai.request('http://localhost:8080')
+            .get('/milk')
+            .end((err, res) => {
+                expect(res.status).to.be.equal(404);
                 done(err);
             });
     });

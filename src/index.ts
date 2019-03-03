@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { DummyServer } from './dummy_server';
 
 new DummyServer().listen()
