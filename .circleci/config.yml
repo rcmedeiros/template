@@ -20,8 +20,9 @@ jobs:
     steps:
       - checkout
       - run: npm install --production
+      - run: tree
       - save_cache:
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "package.json" }}_G
           paths:
             - /node_modules
 
@@ -31,8 +32,9 @@ jobs:
     steps:
       - checkout
       - run: npm install --only=dev
+      - run: tree
       - save_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}
+          key: dev_dependencies-{{ checksum "package.json" }}_G
           paths:
             - /node_modules
 
@@ -52,7 +54,7 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      - run: ls -lt
+      - run: tree
       # - run: ./node_modules/.bin/tslint --project tsconfig.json --config src/tslint.json
 
   # build_dev:
@@ -150,9 +152,9 @@ workflows:
       #       branches:
       #         only: develop
       - code_review:
-          # requires:
-          #   - dev_dependencies
-          #   - dependencies
+          requires:
+            - dev_dependencies
+            - dependencies
           filters:
             branches:
               only: develop
