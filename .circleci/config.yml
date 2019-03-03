@@ -83,16 +83,17 @@ jobs:
   #         root: ./
   #         paths:
   #           - dist/*
-  # test:
-  #   docker:
-  #     - image: circleci/node:10
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         key: dev_dependencies-{{ checksum "package.json" }}
-  #     - restore_cache:
-  #         key: dependencies-{{ checksum "package.json" }}
-  #     - run: npm test
+  test:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          key: dev_dependencies-{{ checksum "package.json" }}
+      - restore_cache:
+          key: dependencies-{{ checksum "package.json" }}
+      - run: npm test
+
   # deploy_dev:
   #   docker:
   #     - image: circleci/node:10
@@ -162,11 +163,11 @@ workflows:
           filters:
             branches:
               only: develop
-  #     - test:
-  #         requires:
-  #           - build_dev
-  #           - dependencies
-  #           - dev_dependencies
+      - test:
+          requires:
+            - build_dev
+            - dependencies
+            - dev_dependencies
   #         filters:
   #           branches:
   #             only: develop
