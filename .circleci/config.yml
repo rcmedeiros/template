@@ -20,6 +20,7 @@ jobs:
     steps:
       - checkout
       - run: npm install --production
+      - run: apt-get install tree -y
       - run: tree
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}_G
@@ -32,6 +33,7 @@ jobs:
     steps:
       - checkout
       - run: npm install --only=dev
+      - run: apt-get install tree -y
       - run: tree
       - save_cache:
           key: dev_dependencies-{{ checksum "package.json" }}_G
@@ -54,6 +56,7 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
+      - run: apt-get install tree -y
       - run: tree
       # - run: ./node_modules/.bin/tslint --project tsconfig.json --config src/tslint.json
 
