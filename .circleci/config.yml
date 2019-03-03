@@ -123,7 +123,7 @@ jobs:
       - run: echo "$RELEASE$"
       - run: echo "{{ RELEASE }}"
       - save_cache:
-          key: v{{ RELEASE }}
+          key: v{{ .RELEASE }}
           paths:
             - ./
 
