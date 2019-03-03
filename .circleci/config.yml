@@ -103,7 +103,7 @@ jobs:
       - attach_workspace:
           at: ./
       #- run: cat package.json | jq -r '.version' | cut -f1 -d"-"
-      - run: rm -rf src && mv dist/* . && rm dist
+      - run: mv dist/* .
       - run: sudo apt-get install tree -y
       - run: tree
       - run: npm publish --access public --tag dev --dry-run
