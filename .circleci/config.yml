@@ -115,13 +115,11 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./
-      - run:
+      - run: |
           echo 'export RELEASE="$(cat package.json | jq -r '.version' | cut -f1
           -d'-')"' >> $BASH_ENV
-      - run: source $BASH_ENV
+          source $BASH_ENV
       - run: echo "${RELEASE}"
-      - run: echo "$RELEASE$"
-      - run: echo "{{ RELEASE }}"
       - save_cache:
           key: v{{ .Environment.RELEASE }}
           paths:
