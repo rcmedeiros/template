@@ -25,7 +25,7 @@ jobs:
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}_G
           paths:
-            - /node_modules
+            - node_modules
 
   dev_dependencies:
     docker:
@@ -38,7 +38,7 @@ jobs:
       - save_cache:
           key: dev_dependencies-{{ checksum "package.json" }}_G
           paths:
-            - /node_modules
+            - node_modules
 
   docs:
     docker:
