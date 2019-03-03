@@ -9,7 +9,7 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
       - run: echo 'export VERSION="TRALALA"' >> $BASH_ENV
       - run: source $BASH_ENV
-      - run: echo "{{ VERSION }}"
+      - run: echo "${VERSION}"
       - persist_to_workspace:
           root: ./
           paths:
