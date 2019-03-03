@@ -19,7 +19,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: npm install --production
+      - run: npm install --production --no-save
       - run: cat package.json
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}
@@ -31,7 +31,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: npm install --only=dev
+      - run: npm install --only=dev --no-save
       - run: cat package.json
       - save_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
