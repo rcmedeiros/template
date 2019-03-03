@@ -7,6 +7,9 @@ jobs:
       - checkout
       - run: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      - run:
+          echo 'export PATH="v${ cat package.json | jq -r '.version' | cut -f1
+          -d"-" }"' >> $BASH_ENV
       - persist_to_workspace:
           root: ./
           paths:
@@ -231,6 +234,12 @@ workflows:
           filters:
             branches:
               only: master
+  test:
+    jobs:
+      - stamp
+      - cache_master:
+          requires:
+            - stamp
   # release:
   #   jobs:
   #     - check_release
