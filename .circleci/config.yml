@@ -141,6 +141,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
+      - run: mv dist/* .
       - run: sudo apt-get install tree -y && tree -a
       - run: npm publish --access public --dry-run
 
