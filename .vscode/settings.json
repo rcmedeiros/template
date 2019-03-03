@@ -1,4 +1,7 @@
 {
     "tslint.alwaysShowStatus": true,
-    "tslint.autoFixOnSave": true
+    "tslint.autoFixOnSave": true,
+    "yaml.format.proseWrap": "always",
+    "yaml.format.singleQuote": true,
+    "yaml.format.enable": true
 }
