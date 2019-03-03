@@ -1,0 +1,10 @@
+.circleci
+.npmignore
+.vscode
+src
+dist
+tsconfig.json
+tslint.json
+mkdocs.yml
+test
+docs
