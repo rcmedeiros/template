@@ -8,10 +8,10 @@ jobs:
       - run: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
       - run:
-          echo 'export VERSION="$(cat package.json | jq -r '.version' | cut -f1
+          echo 'export RELEASE="$(cat package.json | jq -r '.version' | cut -f1
           -d'-')"' >> $BASH_ENV
       - run: source $BASH_ENV
-      - run: echo "${VERSION}"
+      - run: echo "${RELEASE}"
       - persist_to_workspace:
           root: ./
           paths:
@@ -118,7 +118,9 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: echo "{{ VERSION }}"
+      - run: echo "${RELEASE}"
+      - run: echo "$RELEASE$"
+      - run: echo "{{ RELEASE }}"
       # - attach_workspace:
       #     at: ./
       # - save_cache:
@@ -243,12 +245,12 @@ workflows:
           filters:
             branches:
               only: feature/cache_master
-      # - cache_master:
-      #     requires:
-      #       - stamp
-      #     filters:
-      #       branches:
-      #         only: feature/cache_master
+      - cache_master:
+          requires:
+            - stamp
+          filters:
+            branches:
+              only: feature/cache_master
   # release:
   #   jobs:
   #     - check_release
