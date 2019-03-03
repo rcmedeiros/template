@@ -93,6 +93,8 @@ jobs:
       - restore_cache:
           key: dependencies-{{ checksum "package.json" }}
       - run: npm test
+      - store_test_results:
+          path: .nyc_output
 
   # deploy_dev:
   #   docker:
