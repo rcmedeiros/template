@@ -23,7 +23,7 @@ jobs:
       - run: sudo apt-get install tree -y
       - run: tree
       - save_cache:
-          key: dependencies-{{ checksum "package.json" }}_G
+          key: dependencies-{{ checksum "package.json" }}_G7
           paths:
             - node_modules
 
@@ -36,7 +36,7 @@ jobs:
       - run: sudo apt-get install tree -y
       - run: tree
       - save_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}_G
+          key: dev_dependencies-{{ checksum "package.json" }}_G7
           paths:
             - node_modules
 
