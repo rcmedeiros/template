@@ -20,10 +20,8 @@ jobs:
     steps:
       - checkout
       - run: npm install --production
-      - run: sudo apt-get install tree -y
-      - run: tree
       - save_cache:
-          key: dependencies-{{ checksum "package.json" }}_G7
+          key: dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
 
@@ -33,10 +31,8 @@ jobs:
     steps:
       - checkout
       - run: npm install --only=dev
-      - run: sudo apt-get install tree -y
-      - run: tree
       - save_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}_G7
+          key: dev_dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
 
@@ -56,8 +52,9 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      - run: sudo apt-get install tree -y
-      - run: tree
+      # - run: sudo apt-get install tree -y
+      # - run: tree
+      - run: npm run tslint
       # - run: ./node_modules/.bin/tslint --project tsconfig.json --config src/tslint.json
 
   # build_dev:
@@ -138,10 +135,10 @@ workflows:
   version: 2
   develop_commit:
     jobs:
-      # - stamp:
-      #     filters:
-      #       branches:
-      #         only: develop
+      - stamp:
+          filters:
+            branches:
+              only: develop
       - dependencies:
           filters:
             branches:
@@ -150,10 +147,10 @@ workflows:
           filters:
             branches:
               only: develop
-      # - docs:
-      #     filters:
-      #       branches:
-      #         only: develop
+      - docs:
+          filters:
+            branches:
+              only: develop
       - code_review:
           requires:
             - dev_dependencies
