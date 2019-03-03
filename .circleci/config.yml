@@ -52,7 +52,8 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      - run: ./node_modules/.bin/tslint --project tsconfig.json --config src/tslint.json
+      - run: ls -lt
+      # - run: ./node_modules/.bin/tslint --project tsconfig.json --config src/tslint.json
 
   # build_dev:
   #   docker:
@@ -132,22 +133,22 @@ workflows:
   version: 2
   develop_commit:
     jobs:
-      - stamp:
-          filters:
-            branches:
-              only: develop
-      - dependencies:
-          filters:
-            branches:
-              only: develop
-      - dev_dependencies:
-          filters:
-            branches:
-              only: develop
-      - docs:
-          filters:
-            branches:
-              only: develop
+      # - stamp:
+      #     filters:
+      #       branches:
+      #         only: develop
+      # - dependencies:
+      #     filters:
+      #       branches:
+      #         only: develop
+      # - dev_dependencies:
+      #     filters:
+      #       branches:
+      #         only: develop
+      # - docs:
+      #     filters:
+      #       branches:
+      #         only: develop
       - code_review:
           requires:
             - dev_dependencies
