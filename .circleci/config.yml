@@ -117,7 +117,7 @@ jobs:
           mkdir .circleci
           cat package.json | jq -r '.version' | cut -f1 -d'-' > .circleci/.release
       - save_cache:
-          key: release{{ checksum ".circleci/.release" }}
+          key: release-{{ checksum ".circleci/.release" }}
           paths:
             - ./
 
@@ -128,7 +128,7 @@ jobs:
       - checkout
       - run: echo "${CIRCLE_TAG}" > .circleci/.release
       - restore_cache:
-          key: dependencies-{{ checksum ".circleci/.release" }}
+          key: release-{{ checksum ".circleci/.release" }}
       - run: sudo apt-get install tree -y && tree -a
       - persist_to_workspace:
           root: ./
