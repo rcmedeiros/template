@@ -20,7 +20,6 @@ jobs:
     steps:
       - checkout
       - run: npm install --production --no-save
-      - run: cat package.json
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}
           paths:
@@ -32,7 +31,6 @@ jobs:
     steps:
       - checkout
       - run: npm install --only=dev --no-save
-      - run: cat package.json
       - save_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
           paths:
@@ -55,25 +53,22 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      # - run: sudo apt-get install tree -y
-      # - run: tree
       - run: npm run tslint
-      # - run: ./node_modules/.bin/tslint --project tsconfig.json --config src/tslint.json
 
-  # build_dev:
-  #   docker:
-  #     - image: circleci/node:10
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         key: dev_dependencies-{{ checksum "package.json" }}
-  #     - run: ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true
-  #         --listFiles true --listEmittedFiles true --declaration true
-  #         --sourceMap false --inlineSourceMap true --inlineSources true
-  #     - persist_to_workspace:
-  #         root: ./
-  #         paths:
-  #           - dist/*
+  build_dev:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          key: dev_dependencies-{{ checksum "package.json" }}
+      - run: ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true
+          --listFiles true --listEmittedFiles true --declaration true
+          --sourceMap false --inlineSourceMap true --inlineSources true
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - dist/*
   # build_prod:
   #   docker:
   #     - image: circleci/node:10
@@ -161,12 +156,12 @@ workflows:
           filters:
             branches:
               only: develop
-  #     - build_dev:
-  #         requires:
-  #           - dev_dependencies
-  #         filters:
-  #           branches:
-  #             only: develop
+      - build_dev:
+          requires:
+            - dev_dependencies
+          filters:
+            branches:
+              only: develop
   #     - test:
   #         requires:
   #           - build_dev
