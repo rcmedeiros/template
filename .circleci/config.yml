@@ -122,10 +122,10 @@ jobs:
       - run: echo "${RELEASE}"
       - run: echo "$RELEASE$"
       - run: echo "{{ RELEASE }}"
-      # - save_cache:
-      #     key: v{{ cat package.json | jq -r '.version' | cut -f1 -d"-" }}
-      #     paths:
-      #       - /node_modules
+      - save_cache:
+          key: v{{ RELEASE }}
+          paths:
+            - ./
 
   # check_release:
   #   docker:
