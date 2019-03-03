@@ -9,7 +9,7 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
       - run:
           echo 'export VERSION="v${ cat package.json | jq -r '.version' | cut
-          -f1 -d"-" }"' >> $BASH_ENV
+          -f1 -d"-" }"' >> $BASH_ENV && source $BASH_ENV
       - persist_to_workspace:
           root: ./
           paths:
