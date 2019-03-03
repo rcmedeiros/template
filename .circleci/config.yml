@@ -68,20 +68,20 @@ jobs:
           root: ./
           paths:
             - dist/*
-  # build_prod:
-  #   docker:
-  #     - image: circleci/node:10
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         key: dev_dependencies-{{ checksum "package.json" }}
-  #     - run: ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
-  #         --skipLibCheck true --sourceMap false --listFiles true
-  #         --listEmittedFiles true --declaration true
-  #     - persist_to_workspace:
-  #         root: ./
-  #         paths:
-  #           - dist/*
+  build_prod:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          key: dev_dependencies-{{ checksum "package.json" }}
+      - run: ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
+          --skipLibCheck true --sourceMap false --listFiles true
+          --listEmittedFiles true --declaration true
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - dist/*
   test:
     docker:
       - image: circleci/node:10
@@ -102,10 +102,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./
-      #- run: cat package.json | jq -r '.version' | cut -f1 -d"-"
       - run: mv dist/* .
-      - run: sudo apt-get install tree -y
-      - run: tree
+      - run: sudo apt-get install tree -y && tree -a
       - run: npm publish --access public --tag dev --dry-run
 
   cache_master:
@@ -116,7 +114,7 @@ jobs:
       - attach_workspace:
           at: ./
       - save_cache:
-          key: dist-{{ CIRCLE_BUILD_NUM }}
+          key: v{{ cat package.json | jq -r '.version' | cut -f1 -d"-" }}
           paths:
             - /node_modules
 
@@ -185,52 +183,52 @@ workflows:
           filters:
             branches:
               only: develop
-  # master_commit:
-  #   jobs:
-  #     - stamp:
-  #         filters:
-  #           branches:
-  #             only: master
-  #     - dependencies:
-  #         filters:
-  #           branches:
-  #             only: master
-  #     - dev_dependencies:
-  #         filters:
-  #           branches:
-  #             only: master
-  #     - docs:
-  #         filters:
-  #           branches:
-  #             only: master
-  #     - code_review:
-  #         requires:
-  #           - dev_dependencies
-  #         filters:
-  #           branches:
-  #             only: master
-  #     - build_prod:
-  #         requires:
-  #           - dev_dependencies
-  #         filters:
-  #           branches:
-  #             only: master
-  #     - test:
-  #         requires:
-  #           - build_prod
-  #           - dependencies
-  #           - dev_dependencies
-  #         filters:
-  #           branches:
-  #             only: master
-  #     - cache_master:
-  #         requires:
-  #           - stamp
-  #           - test
-  #           - docs
-  #         filters:
-  #           branches:
-  #             only: master
+  master_commit:
+    jobs:
+      - stamp:
+          filters:
+            branches:
+              only: master
+      - dependencies:
+          filters:
+            branches:
+              only: master
+      - dev_dependencies:
+          filters:
+            branches:
+              only: master
+      - docs:
+          filters:
+            branches:
+              only: master
+      - code_review:
+          requires:
+            - dev_dependencies
+          filters:
+            branches:
+              only: master
+      - build_prod:
+          requires:
+            - dev_dependencies
+          filters:
+            branches:
+              only: master
+      - test:
+          requires:
+            - build_prod
+            - dependencies
+            - dev_dependencies
+          filters:
+            branches:
+              only: master
+      - cache_master:
+          requires:
+            - stamp
+            - test
+            - docs
+          filters:
+            branches:
+              only: master
   # release:
   #   jobs:
   #     - check_release
