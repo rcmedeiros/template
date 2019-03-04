@@ -54,36 +54,36 @@ jobs:
           key: dev_dependencies-{{ checksum "package.json" }}
       - run: npm run tslint
 
-  build_dev:
+  build:
+    parameters:
+      production:
+        type: boolean
+        default: false
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      - run:
-          ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true
-          --listFiles true --listEmittedFiles true --declaration true
-          --sourceMap false --inlineSourceMap true --inlineSources true
+      - when:
+          condition: << parameters.production >>
+          steps:
+            - run:
+                ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
+                --skipLibCheck true --sourceMap false --listFiles true
+                --listEmittedFiles true --declaration true
+      - unless:
+          condition: << parameters.production >>
+          steps:
+            - run:
+                ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true
+                --listFiles true --listEmittedFiles true --declaration true
+                --sourceMap false --inlineSourceMap true --inlineSources true
       - persist_to_workspace:
           root: ./
           paths:
             - dist/*
-  build_prod:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - restore_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}
-      - run:
-          ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
-          --skipLibCheck true --sourceMap false --listFiles true
-          --listEmittedFiles true --declaration true
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - dist/*
+
   test:
     docker:
       - image: circleci/node:10
@@ -107,16 +107,31 @@ jobs:
       - run: sudo apt-get install tree -y && tree -a
       - run: npm publish --access public --tag dev --dry-run
 
-  cache_master:
+  cache_release:
+    parameters:
+      master_branch:
+        type: boolean
+        default: false
+      release_branch:
+        type: boolean
+        default: false
     docker:
       - image: circleci/node:10
     steps:
-      - checkout
       - attach_workspace:
           at: ./
-      - run: |
-          mkdir .circleci
-          echo "v$(cat package.json | jq -r '.version' | cut -f1 -d'-')" > .circleci/.release
+      - run: mkdir .circleci
+      - when:
+          condition: << parameters.master_branch >>
+          steps:
+            - run: |
+                echo "v$(cat package.json | jq -r '.version' | cut -f1 -d'-')" > .circleci/.release
+      - when:
+          condition: << parameters.release_branch >>
+          steps:
+            - run: |
+                echo "${CIRCLE_BRANCH}" > .circleci/.release
+      - run: cat .circleci/.release
       - save_cache:
           key: release-{{ checksum ".circleci/.release" }}
           paths:
@@ -134,7 +149,6 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: echo "${CIRCLE_TAG}" > .circleci/.release
       - when:
           condition: << parameters.master_branch >>
           steps:
@@ -192,7 +206,7 @@ jobs:
 
 workflows:
   version: 2
-  develop_commit:
+  development_commit:
     jobs:
       - stamp:
           filters:
@@ -217,7 +231,7 @@ workflows:
           filters:
             branches:
               only: develop
-      - build_dev:
+      - build:
           requires:
             - dev_dependencies
           filters:
@@ -225,7 +239,7 @@ workflows:
               only: develop
       - test:
           requires:
-            - build_dev
+            - build
             - dependencies
             - dev_dependencies
           filters:
@@ -238,45 +252,71 @@ workflows:
           filters:
             branches:
               only: develop
-  master_commit:
+  staging_commit:
     jobs:
       - stamp:
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - dependencies:
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - dev_dependencies:
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - docs:
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - code_review:
           requires:
             - dev_dependencies
           filters:
             branches:
-              only: master
-      - build_prod:
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - build:
+          production: true
           requires:
             - dev_dependencies
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - test:
           requires:
-            - build_prod
+            - build
             - dependencies
             - dev_dependencies
           filters:
             branches:
-              only: master
-      - cache_master:
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - cache_release:
+          release_branch: true
+          requires:
+            - stamp
+            - test
+            - docs
+            - code_review
+          filters:
+            branches:
+              only: /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - cache_release:
+          master_branch: true
           requires:
             - stamp
             - test
