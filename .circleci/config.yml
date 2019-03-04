@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   stamp:
     docker:
@@ -288,6 +288,7 @@ workflows:
   release:
     jobs:
       - check_release:
+          name: check_release_branch
           release_branch: true
           filters:
             branches:
@@ -295,6 +296,7 @@ workflows:
             tags:
               only: /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - check_release:
+          name: check_master_branch
           master_branch: true
           filters:
             branches:
@@ -304,7 +306,7 @@ workflows:
       - hold:
           type: approval
           requires:
-            - check_release
+            - check_master_branch
           filters:
             branches:
               ignore: /.*/
@@ -313,7 +315,7 @@ workflows:
       - deploy_release:
           alpha: true
           requires:
-            - check_release
+            - check_release_branch
           filters:
             branches:
               ignore: /.*/
@@ -322,7 +324,7 @@ workflows:
       - deploy_release:
           beta: true
           requires:
-            - check_release
+            - check_release_branch
           filters:
             branches:
               ignore: /.*/
@@ -331,7 +333,7 @@ workflows:
       - deploy_release:
           release_candidate: true
           requires:
-            - check_release
+            - check_release_branch
           filters:
             branches:
               ignore: /.*/
