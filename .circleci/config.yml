@@ -335,7 +335,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+              only: /v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - check_release:
           name: check_master_branch
           master_branch: true
@@ -361,7 +361,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /release\/v\d+\.\d+\.\d+-(alpha)(\.\d){0,1}/
+              only: /v\d+\.\d+\.\d+-(alpha)(\.\d){0,1}/
       - deploy_release:
           beta: true
           requires:
@@ -370,7 +370,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /release\/v\d+\.\d+\.\d+-(beta)(\.\d){0,1}/
+              only: /v\d+\.\d+\.\d+-(beta)(\.\d){0,1}/
       - deploy_release:
           release_candidate: true
           requires:
@@ -379,7 +379,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /release\/v\d+\.\d+\.\d+-(rc)(\.\d){0,1}/
+              only: /v\d+\.\d+\.\d+-(rc)(\.\d){0,1}/
       - deploy_release:
           stable: true
           requires:
