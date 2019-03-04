@@ -111,6 +111,7 @@ jobs:
     docker:
       - image: circleci/node:10
     steps:
+      - checkout
       - attach_workspace:
           at: ./
       - run: |
@@ -122,11 +123,27 @@ jobs:
             - ./
 
   check_release:
+    parameters:
+      master_branch:
+        type: boolean
+        default: false
+      release_branch:
+        type: boolean
+        default: false
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - run: echo "${CIRCLE_TAG}" > .circleci/.release
+      - when:
+          condition: << parameters.master_branch >>
+          steps:
+            - run: echo "${CIRCLE_TAG}" > .circleci/.release
+      - when:
+          condition: << parameters.release_branch >>
+          steps:
+            - run: echo "release/${CIRCLE_TAG}" > .circleci/.release
+      - run: cat .circleci/.release
       - restore_cache:
           key: release-{{ checksum ".circleci/.release" }}
       - run: sudo apt-get install tree -y && tree -a
@@ -136,6 +153,19 @@ jobs:
             - ./*
 
   deploy_release:
+    parameters:
+      alpha:
+        type: boolean
+        default: false
+      beta:
+        type: boolean
+        default: false
+      release_candidate:
+        type: boolean
+        default: false
+      stable:
+        type: boolean
+        default: false
     docker:
       - image: circleci/node:10
     steps:
@@ -143,7 +173,22 @@ jobs:
           at: ./
       - run: mv dist/* .
       - run: sudo apt-get install tree -y && tree -a
-      - run: npm publish --access public --dry-run
+      - when:
+          condition: << parameters.alpha >>
+          steps:
+            - run: npm publish --access public --tag alpha --dry-run
+      - when:
+          condition: << parameters.beta >>
+          steps:
+            - run: npm publish --access public --tag beta --dry-run
+      - when:
+          condition: << parameters.release_candidate >>
+          steps:
+            - run: npm publish --access public --tag next --dry-run
+      - when:
+          condition: << parameters.stable >>
+          steps:
+            - run: npm publish --access public --dry-run
 
 workflows:
   version: 2
@@ -243,6 +288,14 @@ workflows:
   release:
     jobs:
       - check_release:
+          release_branch: true
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - check_release:
+          master_branch: true
           filters:
             branches:
               ignore: /.*/
@@ -258,6 +311,34 @@ workflows:
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
       - deploy_release:
+          alpha: true
+          requires:
+            - check_release
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /release\/v\d+\.\d+\.\d+-(alpha)(\.\d){0,1}/
+      - deploy_release:
+          beta: true
+          requires:
+            - check_release
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /release\/v\d+\.\d+\.\d+-(beta)(\.\d){0,1}/
+      - deploy_release:
+          release_candidate: true
+          requires:
+            - check_release
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /release\/v\d+\.\d+\.\d+-(rc)(\.\d){0,1}/
+      - deploy_release:
+          stable: true
           requires:
             - hold
           filters:
