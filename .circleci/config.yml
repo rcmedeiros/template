@@ -335,7 +335,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+              only: wtf
       - check_release:
           name: check_master_branch
           master_branch: true
