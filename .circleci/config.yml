@@ -14,7 +14,13 @@ jobs:
             chmod +x sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner
       - run:
           name: Setup Sonar Scanner
-          command: ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner
+          command: |
+            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner \
+            -Dsonar.projectKey=rcmedeiros_template \
+            -Dsonar.organization=rcmedeiros-github \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login= ${SONAR_LOGIN}
 
   stamp:
     docker:
