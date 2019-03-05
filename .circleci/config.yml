@@ -20,7 +20,7 @@ jobs:
       - checkout
       - restore_cache:
           key: dependencies-{{ checksum "package.json" }}
-      - run: ./.circleci/install.sh
+      - run: sudo ./.circleci/install.sh
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}
           paths:
@@ -33,7 +33,7 @@ jobs:
       - checkout
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      - run: ./.circleci/install.sh dev
+      - run: sudo ./.circleci/install.sh dev
       - save_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
           paths:
