@@ -1,5 +1,11 @@
 version: 2.1
 jobs:
+  sonarcloud:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - run: java -version
+
   stamp:
     docker:
       - image: circleci/node:10
@@ -450,3 +456,9 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
+  sonarcloud:
+    jobs:
+      - sonarcloud:
+          filters:
+            branches:
+              only: feature/sonarcloud
