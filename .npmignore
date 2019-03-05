@@ -2,6 +2,7 @@
 .npmignore
 .vscode
 .snyk
+.codeclimate.yml
 src
 dist
 tsconfig.json
