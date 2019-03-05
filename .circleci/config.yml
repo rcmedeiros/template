@@ -238,7 +238,6 @@ jobs:
             - run: npm publish --access public --dry-run
 
 workflows:
-  version: 2
   development_commit:
     jobs:
       - stamp:
@@ -313,9 +312,9 @@ workflows:
                 - master
                 - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - audit_dependencies:
+          requires:
+            - dev_dependencies
           filters:
-            requires:
-              - dev_dependencies
             branches:
               only:
                 - master
