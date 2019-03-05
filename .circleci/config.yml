@@ -119,10 +119,9 @@ jobs:
           --require ts-node/register --check-leaks --timeout 300 \
           --recursive -exit test/*-test.ts --reporter mocha-junit-reporter \
           --reporter-options mochaFile=reports/mocha/test-results.xml
-      - run: npm i codecov -g
-      - run: |
-          ./node_modules/.bin/nyc report
-      - run: codecov
+      - run: ./node_modules/.bin/nyc report
+      - run: npm i codecov
+      - run: ./node_modules/.bin/codecov
       - store_test_results:
           path: reports
 
