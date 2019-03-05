@@ -122,8 +122,8 @@ jobs:
           --recursive -exit test/*-test.ts --reporter mocha-junit-reporter \
           --reporter-options mochaFile=reports/mocha/test-results.xml
       - run: ./node_modules/.bin/nyc report
-      - codecov/upload: 
-          file: {{ "coverage/coverage_final.json" }}
+      - codecov/upload:
+          file: 'coverage/coverage_final.json'
       - store_test_results:
           path: reports
 
