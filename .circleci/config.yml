@@ -45,6 +45,13 @@ jobs:
           paths:
             - node_modules
 
+  audit_dependencies:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm audit
+
   docs:
     docker:
       - image: circleci/node:10
@@ -239,6 +246,10 @@ workflows:
           filters:
             branches:
               only: develop
+      - audit_dependencies:
+          filters:
+            branches:
+              only: develop
       - docs:
           filters:
             branches:
@@ -258,9 +269,10 @@ workflows:
               only: develop
       - test:
           requires:
-            - build
             - dependencies
             - dev_dependencies
+            - audit_dependencies
+            - build
           filters:
             branches:
               only: develop
@@ -291,6 +303,12 @@ workflows:
               only:
                 - master
                 - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - audit_dependencies:
+          filters:
+            branches:
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - docs:
           filters:
             branches:
@@ -316,9 +334,10 @@ workflows:
                 - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - test:
           requires:
-            - build
             - dependencies
             - dev_dependencies
+            - audit_dependencies
+            - build
           filters:
             branches:
               only:
