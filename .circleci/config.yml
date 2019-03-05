@@ -123,7 +123,7 @@ jobs:
           --reporter-options mochaFile=reports/mocha/test-results.xml
       - run: ./node_modules/.bin/nyc report
       - codecov/upload:
-          file: 'coverage/coverage_final.json'
+          file: './coverage/coverage_final.json'
       - store_test_results:
           path: reports
 
