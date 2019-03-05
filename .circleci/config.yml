@@ -5,6 +5,7 @@ jobs:
       - image: circleci/openjdk:8
     steps:
       - checkout
+      # TODO: Cache this step
       - run:
           name: Setup Sonar Scanner
           command: |
@@ -13,7 +14,7 @@ jobs:
             unzip scanner.zip
             chmod +x sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner
       - run:
-          name: Setup Sonar Scanner
+          name: Run Sonar Scanner
           command: |
             ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner \
             -Dsonar.projectKey=rcmedeiros_template \
