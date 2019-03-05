@@ -108,6 +108,8 @@ jobs:
   test:
     docker:
       - image: circleci/node:10
+    orbs:
+      codecov: codecov/codecov@1.0.2
     steps:
       - checkout
       - restore_cache:
@@ -120,8 +122,8 @@ jobs:
           --recursive -exit test/*-test.ts --reporter mocha-junit-reporter \
           --reporter-options mochaFile=reports/mocha/test-results.xml
       - run: ./node_modules/.bin/nyc report
-      - run: npm i codecov
-      - run: ./node_modules/.bin/codecov
+      - codecov/upload:
+          file: { { coverage/coverage-final.json } }
       - store_test_results:
           path: reports
 
