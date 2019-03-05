@@ -51,8 +51,7 @@ jobs:
     steps:
       - checkout
       - run: npm audit
-      - restore_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}
+      - run: npm i snyk
       - run: ./node_modules/.bin/snyk test
 
   docs:
