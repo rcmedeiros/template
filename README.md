@@ -4,6 +4,8 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/rcmedeiros/template/badge.svg?targetFile=package.json)](https://snyk.io/test/github/rcmedeiros/template?targetFile=package.json)
 [![codecov](https://codecov.io/gh/rcmedeiros/template/branch/master/graph/badge.svg?token=CJcGrQ0S58)](https://codecov.io/gh/rcmedeiros/template)
 [![Coverage Status](https://coveralls.io/repos/github/rcmedeiros/template/badge.svg?branch=master)](https://coveralls.io/github/rcmedeiros/template?branch=master)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/37e2987f72bc13b00e5a/test_coverage)](https://codeclimate.com/github/rcmedeiros/template/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/37e2987f72bc13b00e5a/maintainability)](https://codeclimate.com/github/rcmedeiros/template/maintainability)
 [![dependencies Status](https://david-dm.org/rcmedeiros/template/status.svg)](https://david-dm.org/rcmedeiros/template)
 [![devDependencies Status](https://david-dm.org/rcmedeiros/template/dev-status.svg)](https://david-dm.org/rcmedeiros/template?type=dev)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
@@ -28,3 +30,4 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
 * Spies, Stubs and Mocks by [Sinon.JS](https://sinonjs.org/) (or maybe [JsMockito](https://jsmockito.org/))
 * [Code Climate: Quality](https://codeclimate.com/quality/pricing/)
 * [Sonarcloud](https://sonarcloud.io)
+* [Greenkeeper](https://greenkeeper.io)
