@@ -22,3 +22,5 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
 
 * Documentation hosted by [ReadTheDocs](https://readthedocs.org/).
 * Spies, Stubs and Mocks by [Sinon.JS](https://sinonjs.org/) (or maybe [JsMockito](https://jsmockito.org/))
+* [Code Climate: Quality](https://codeclimate.com/quality/pricing/)
+* [Sonarcloud](https://sonarcloud.io)
