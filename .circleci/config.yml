@@ -103,9 +103,13 @@ jobs:
           key: dev_dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dependencies-{{ checksum "package.json" }}
-      - run: npm test
+      - run: |
+          ./node_modules/.bin/nyc ./node_modules/.bin/mocha \
+          --require ts-node/register --check-leaks --timeout 300 \
+          --recursive -exit test/*-test.ts --reporter mocha-junit-reporter \
+          --reporter-options mochaFile=reports/mocha/test-results.xml
       - store_test_results:
-          path: .nyc_output
+          path: reports
 
   deploy_dev:
     docker:
