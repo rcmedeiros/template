@@ -11,6 +11,7 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
   * branch develop submits a package marked with the @dev tag;
   * branch release/ deploys with [@alpha, @beta or @next](https://docs.npmjs.com/cli/dist-tag) (release candidate) tags;
   * branch master submits to @latest. Those require manual approval.
+* Vulnerability checks by [npm-audit](https://docs.npmjs.com/cli/audit) and [Snyk](https://snyk.io/)
 * The versioning complies with [SemVer](https://semver.org/);
 * Tests are implemented with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
 * Test coverage assessed with [Istanbul.js](https://istanbul.js.org/).

@@ -1,6 +1,7 @@
 .circleci
 .npmignore
 .vscode
+.snyk
 src
 dist
 tsconfig.json

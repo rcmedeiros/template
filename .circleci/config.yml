@@ -51,6 +51,9 @@ jobs:
     steps:
       - checkout
       - run: npm audit
+      - restore_cache:
+          key: dev_dependencies-{{ checksum "package.json" }}
+      - run: ./node_modules/.bin/snyk test
 
   docs:
     docker:
@@ -251,6 +254,8 @@ workflows:
             branches:
               only: develop
       - audit_dependencies:
+          requires:
+            - dev_dependencies
           filters:
             branches:
               only: develop
@@ -309,6 +314,8 @@ workflows:
                 - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - audit_dependencies:
           filters:
+            requires:
+              - dev_dependencies
             branches:
               only:
                 - master

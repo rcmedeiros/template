@@ -12,7 +12,7 @@
     "build-ts": "tsc -p tsconfig.json & cp \"package.json\" \"dist/\"",
     "watch-ts": "tsc -d -w",
     "tslint": "tslint --project tsconfig.json --config src/tslint.json",
-    "test": "nyc mocha --require ts-node/register --check-leaks --timeout 300 --recursive -exit test/*-test.ts",
+    "test": "snyk test && nyc mocha --require ts-node/register --check-leaks --timeout 300 --recursive -exit test/*-test.ts",
     "coverage": "nyc --reporter=html mocha --require ts-node/register --check-leaks --timeout 300 --recursive -exit test/**/*-test.ts"
   },
   "nyc": {
@@ -60,11 +60,12 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "mocha": "^6.0.2",
+    "mocha-junit-reporter": "^1.18.0",
     "nyc": "^13.3.0",
+    "snyk": "^1.135.1",
     "ts-node": "^7.0.1",
     "tslint": "^5.13.1",
-    "typescript": "^3.3.3333",
-    "mocha-junit-reporter": "^1.18.0"
+    "typescript": "^3.3.3333"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
