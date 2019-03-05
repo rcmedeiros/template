@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   stamp:
     docker:
@@ -108,8 +110,6 @@ jobs:
   test:
     docker:
       - image: circleci/node:10
-    orbs:
-      codecov: codecov/codecov@1.0.2
     steps:
       - checkout
       - restore_cache:
@@ -123,7 +123,7 @@ jobs:
           --reporter-options mochaFile=reports/mocha/test-results.xml
       - run: ./node_modules/.bin/nyc report
       - codecov/upload:
-          file: { { coverage/coverage-final.json } }
+          file: {{ "coverage/coverage_final.json" }}
       - store_test_results:
           path: reports
 
