@@ -2,6 +2,7 @@
 [![CircleCI](https://circleci.com/gh/rcmedeiros/template.svg?style=svg&circle-token=0cbb60bd086a80279822859c0ed2610d5428a223)](https://circleci.com/gh/rcmedeiros/template)
 [![Known Vulnerabilities](https://snyk.io/test/github/rcmedeiros/template/badge.svg?targetFile=package.json)](https://snyk.io/test/github/rcmedeiros/template?targetFile=package.json)
 [![codecov](https://codecov.io/gh/rcmedeiros/template/branch/master/graph/badge.svg?token=CJcGrQ0S58)](https://codecov.io/gh/rcmedeiros/template)
+[![Coverage Status](https://coveralls.io/repos/github/rcmedeiros/template/badge.svg?branch=master)](https://coveralls.io/github/rcmedeiros/template?branch=master)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 A [TypeScript](https://github.com/trending/typescript) project that does very little other than to demonstrate how to setup a proper [CI](https://en.wikipedia.org/wiki/Continuous_integration)/[CD](https://en.wikipedia.org/wiki/Continuous_delivery) project.
@@ -15,7 +16,7 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
 * The versioning complies with [SemVer](https://semver.org/);
 * Tests are implemented with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
 * Test coverage assessed with [Istanbul.js](https://istanbul.js.org/).
-* Coverage reports by [Codecov](https://codecov.io/)
+* Coverage reports by [Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/)
 
 ## Up Next
 

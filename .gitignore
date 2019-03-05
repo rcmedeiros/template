@@ -17,6 +17,9 @@ coverage
 # nyc test coverage
 .nyc_output
 
+# Coveralls token
+.coveralls.yml
+
 # Dependency directories
 node_modules/
 
