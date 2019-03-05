@@ -120,7 +120,6 @@ jobs:
           --recursive -exit test/*-test.ts --reporter mocha-junit-reporter \
           --reporter-options mochaFile=reports/mocha/test-results.xml
       - run: ./node_modules/.bin/nyc report --reporter=json
-      - run: sudo apt-get install tree -y && tree -a -I 'node_modules'
       - run:
           bash <(curl -s https://codecov.io/bash) -t ${CODECOV_TOKEN} -f
           coverage/coverage-final.json
