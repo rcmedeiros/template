@@ -122,10 +122,10 @@ jobs:
           --recursive -exit test/*-test.ts --reporter mocha-junit-reporter \
           --reporter-options mochaFile=reports/mocha/test-results.xml
       - run: ./node_modules/.bin/nyc report --reporter=json
-      - run: sudo apt-get install tree -y && tree -a
+      - run: sudo apt-get install tree -y && tree -a -I 'node_modules'
       - run: cd coverage && ls -lt && pwd
       - codecov/upload:
-          file: './coverage/coverage_final.json'
+          file: '/home/circleci/project/coverage/coverage_final.json'
       - store_test_results:
           path: reports
 
