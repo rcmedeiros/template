@@ -18,7 +18,7 @@ interface Closable {
 }
 
 export class DummyServer {
-    private readonly LIST: Array<string> = ['Green Tea', 'Himalaya Darjeeling', 'Earl Grey tea'];
+    private LIST: Array<string> = ['Green Tea', 'Himalaya Darjeeling', 'Earl Grey tea'];
     private readonly app: core.Express;
     private readonly moduleInfo: ModuleInfo;
     private server: http.Server;

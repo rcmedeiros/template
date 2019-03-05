@@ -57,12 +57,16 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: cat package.json
       - restore_cache:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      - run: npm run tslint
+      - run: |
+          ./node_modules/.bin/tslint --project tsconfig.json \
+          --config src/tslint.json --format junit \
+          --out ./reports/tslint/tslint.xml
+      - store_test_results:
+          path: reports
 
   build:
     parameters:
