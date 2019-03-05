@@ -1,8 +1,8 @@
 # Template
 [![CircleCI](https://circleci.com/gh/rcmedeiros/template.svg?style=svg&circle-token=0cbb60bd086a80279822859c0ed2610d5428a223)](https://circleci.com/gh/rcmedeiros/template)
+[![Known Vulnerabilities](https://snyk.io/test/github/rcmedeiros/template/badge.svg?targetFile=package.json)](https://snyk.io/test/github/rcmedeiros/template?targetFile=package.json)
 [![codecov](https://codecov.io/gh/rcmedeiros/template/branch/master/graph/badge.svg?token=CJcGrQ0S58)](https://codecov.io/gh/rcmedeiros/template)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-
 
 A [TypeScript](https://github.com/trending/typescript) project that does very little other than to demonstrate how to setup a proper [CI](https://en.wikipedia.org/wiki/Continuous_integration)/[CD](https://en.wikipedia.org/wiki/Continuous_delivery) project.
 
