@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  codecov: codecov/codecov@1.0.2
 jobs:
   stamp:
     docker:
@@ -123,9 +121,9 @@ jobs:
           --reporter-options mochaFile=reports/mocha/test-results.xml
       - run: ./node_modules/.bin/nyc report --reporter=json
       - run: sudo apt-get install tree -y && tree -a -I 'node_modules'
-      - run: cd coverage && ls -lt && pwd
-      - codecov/upload:
-          file: '/home/circleci/project/coverage/coverage_final.json'
+      - run:
+          bash <(curl -s https://codecov.io/bash) -t token -f
+          coverage/coverage-final.json
       - store_test_results:
           path: reports
 
