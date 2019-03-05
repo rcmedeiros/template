@@ -22,11 +22,11 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
 * Tests are implemented with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
 * Test coverage assessed with [Istanbul.js](https://istanbul.js.org/).
 * Coverage reports by [Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/)
+* Maintainability and code coverage by [Code Climate: Quality](https://codeclimate.com/quality/pricing/)
 
 ## Up Next
 
 * Documentation hosted by [ReadTheDocs](https://readthedocs.org/).
 * Spies, Stubs and Mocks by [Sinon.JS](https://sinonjs.org/) (or maybe [JsMockito](https://jsmockito.org/))
-* [Code Climate: Quality](https://codeclimate.com/quality/pricing/)
 * [Sonarcloud](https://sonarcloud.io)
 * [Greenkeeper](https://greenkeeper.io)
