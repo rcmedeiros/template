@@ -22,6 +22,7 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - run:
           command: |
+            chmod 700 .circleci/install.sh
             ./.circleci/install.sh
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}
@@ -37,6 +38,7 @@ jobs:
           key: dev_dependencies-{{ checksum "package.json" }}
       - run:
           command: |
+            chmod 700 .circleci/install.sh
             ./.circleci/install.sh dev
       - save_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
