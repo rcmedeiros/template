@@ -4,7 +4,10 @@ jobs:
     docker:
       - image: circleci/openjdk:8
     steps:
-      - run: java -version
+      - run: |
+          curl -o scanner.zip 'https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip'
+          mkdir sonar-scanner
+          unzip scanner.zip -d sonar-scanner
 
   stamp:
     docker:
