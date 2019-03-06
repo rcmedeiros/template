@@ -1,40 +1,5 @@
 version: 2.1
 jobs:
-  sonarcloud:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      #nudge
-      - restore_cache:
-          name: Restore Sonarcloud Scanner
-          key: sonar-scanner-3.3.0.1492-linux
-      - run:
-          name: Download Sonarcloud Scanner (if necessary)
-          command: |
-            chmod +x .circleci/install_sonar-scanner.sh
-            ./.circleci/install_sonar-scanner.sh
-      - save_cache:
-          name: Cache Sonarcloud Scanner
-          key: sonar-scanner-3.3.0.1492-linux
-          paths:
-            - sonar-scanner-3.3.0.1492-linux
-      - restore_cache:
-          name: Restore Dependencies
-          key: dependencies-{{ checksum "package.json" }}
-      - restore_cache:
-          name: Restore Development Dependencies
-          key: dev-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Sonarcloud Scan
-          command: |
-            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner \
-            -Dsonar.projectKey=rcmedeiros_template \
-            -Dsonar.organization=rcmedeiros-github \
-            -Dsonar.sources=./src \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${SONAR_LOGIN}
-
   stamp:
     docker:
       - image: circleci/node:10
@@ -148,8 +113,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
+          name: Restore Development Dependencies
           key: dev_dependencies-{{ checksum "package.json" }}
       - restore_cache:
+          name: Restore Dependencies
           key: dependencies-{{ checksum "package.json" }}
       - run:
           name: Run Tests!
@@ -175,6 +142,28 @@ jobs:
             ./cc-test-reporter before-build
             ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
             ./cc-test-reporter after-build -t lcov
+      - restore_cache:
+          name: Restore Sonarcloud Scanner
+          key: sonar-scanner-3.3.0.1492-linux
+      - run:
+          name: Download Sonarcloud Scanner (if still necessary)
+          command: |
+            chmod +x .circleci/install_sonar-scanner.sh
+            ./.circleci/install_sonar-scanner.sh
+      - save_cache:
+          name: Cache Sonarcloud Scanner
+          key: sonar-scanner-3.3.0.1492-linux
+          paths:
+            - sonar-scanner-3.3.0.1492-linux
+      - run:
+          name: Sonarcloud Scan
+          command: |
+            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner \
+            -Dsonar.projectKey=rcmedeiros_template \
+            -Dsonar.organization=rcmedeiros-github \
+            -Dsonar.sources=./src \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${SONAR_LOGIN}
       - store_test_results:
           path: reports
 
@@ -485,9 +474,3 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
-  sonarcloud:
-    jobs:
-      - sonarcloud:
-          filters:
-            branches:
-              only: feature/sonarcloud
