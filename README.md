@@ -10,7 +10,7 @@
 [![devDependencies Status](https://david-dm.org/rcmedeiros/template/dev-status.svg)](https://david-dm.org/rcmedeiros/template?type=dev)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-A [TypeScript](https://github.com/trending/typescript) project that does very little other than to demonstrate how to setup a proper [CI](https://en.wikipedia.org/wiki/Continuous_integration)/[CD](https://en.wikipedia.org/wiki/Continuous_delivery) project.
+A [TypeScript](https://github.com/trending/typescript) project that does very little other than demonstrate how to setup a [CI](https://en.wikipedia.org/wiki/Continuous_integration)/[CD](https://en.wikipedia.org/wiki/Continuous_delivery) project.
 
 * It generates [npmjs](https://www.npmjs.com/) packages at the deployment step (dry run in this case);
 * It expects the repository to follow [Gitflow](https://datasift.github.io/gitflow/IntroducingGitFlow.html).
