@@ -7,9 +7,7 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore Sonarcloud Scanner
-          key:
-            sonar-scanner-{{ checksum
-            "sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner" }}
+          key: sonar-scanner-3.3.0.1492-linux
       - run:
           name: Download Sonarcloud Scanner (if necessary)
           command: |
@@ -17,9 +15,7 @@ jobs:
             ./.circleci/install_sonar-scanner.sh
       - save_cache:
           name: Cache Sonarcloud Scanner
-          key:
-            sonar-scanner-{{ checksum
-            "sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner" }}
+          key: sonar-scanner-3.3.0.1492-linux
           paths:
             - sonar-scanner-3.3.0.1492-linux
       - restore_cache:
