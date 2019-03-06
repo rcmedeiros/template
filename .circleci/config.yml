@@ -6,25 +6,30 @@ jobs:
     steps:
       - checkout
       - restore_cache:
+          name: Restore Sonarcloud Scanner
           key:
             sonar-scanner-{{ checksum
             "sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner" }}
       - run:
+          name: Download Sonarcloud Scanner (if necessary)
           command: |
             chmod +x .circleci/install_sonar-scanner.sh
             ./.circleci/install_sonar-scanner.sh
       - save_cache:
+          name: Cache Sonarcloud Scanner
           key:
-            dependencies-{{ checksum
+            sonar-scanner-{{ checksum
             "sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner" }}
           paths:
             - sonar-scanner-3.3.0.1492-linux
       - restore_cache:
+          name: Restore Dependencies
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
+          name: Restore Development Dependencies
           key: dev-dependencies-{{ checksum "package.json" }}
       - run:
-          name: Run Sonar Scanner
+          name: Sonarcloud Scan
           command: |
             ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner \
             -Dsonar.projectKey=rcmedeiros_template \
