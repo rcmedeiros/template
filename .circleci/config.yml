@@ -6,9 +6,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
-        key: dev-dependencies-{{ checksum "package.json" }}
+          key: dev-dependencies-{{ checksum "package.json" }}
       # TODO: Cache this step
       - run:
           name: Setup Sonar Scanner
