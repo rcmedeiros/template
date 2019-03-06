@@ -158,7 +158,7 @@ jobs:
       - run:
           name: Sonarcloud Scan
           command: |
-            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner \
+            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -X \
             -Dsonar.projectKey=rcmedeiros_template \
             -Dsonar.organization=rcmedeiros-github \
             -Dsonar.sources=./src \
