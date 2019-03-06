@@ -6,17 +6,23 @@ jobs:
     steps:
       - checkout
       - restore_cache:
+          key:
+            sonar-scanner-{{ checksum
+            "sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner" }}
+      - run:
+          command: |
+            chmod +x .circleci/install_sonar-scanner.sh
+            ./.circleci/install_sonar-scanner.sh
+      - save_cache:
+          key:
+            dependencies-{{ checksum
+            "sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner" }}
+          paths:
+            - sonar-scanner-3.3.0.1492-linux
+      - restore_cache:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev-dependencies-{{ checksum "package.json" }}
-      # TODO: Cache this step
-      - run:
-          name: Setup Sonar Scanner
-          command: |
-            curl -o scanner.zip 'https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip'
-            mkdir sonar-scanner
-            unzip scanner.zip
-            chmod +x sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner
       - run:
           name: Run Sonar Scanner
           command: |
