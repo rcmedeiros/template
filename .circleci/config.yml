@@ -167,7 +167,7 @@ jobs:
             -Dsonar.login=${SONAR_LOGIN}
       - store_test_results:
           path: reports
-
+  #
   deploy_dev:
     docker:
       - image: circleci/node:10
