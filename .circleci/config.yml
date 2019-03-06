@@ -2,9 +2,14 @@ version: 2.1
 jobs:
   sonarcloud:
     docker:
-      - image: circleci/openjdk:8
+      - image: circleci/node:10
     steps:
       - checkout
+      - run:
+          name: Install JRE
+          command: |
+            sudo apt-get update
+            sudo apt-get install default-jre
       # TODO: Cache this step
       - run:
           name: Setup Sonar Scanner
