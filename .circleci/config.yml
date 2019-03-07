@@ -144,7 +144,7 @@ jobs:
             ./cc-test-reporter after-build -t lcov
       - restore_cache:
           name: Restore Sonarcloud Scanner
-          key: _sonar-scanner-3.3.0.1492-linux
+          key: -sonar-scanner-3.3.0.1492-linux
       - run:
           name: Download Sonarcloud Scanner (if still necessary)
           command: |
@@ -158,9 +158,10 @@ jobs:
             cat .scannerwork/report-task.txt
       - save_cache:
           name: Cache Sonarcloud Scanner
-          key: _sonar-scanner-3.3.0.1492-linux
+          key: -sonar-scanner-3.3.0.1492-linux
           paths:
             - sonar-scanner-3.3.0.1492-linux
+            - /home/circleci/.sonar
       - store_test_results:
           path: reports
 
