@@ -25,7 +25,7 @@ Until then, behold my badges :)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=rcmedeiros_template&metric=security_rating)](https://sonarcloud.io/dashboard?id=rcmedeiros_template)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=rcmedeiros_template&metric=sqale_index)](https://sonarcloud.io/dashboard?id=rcmedeiros_template)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=rcmedeiros_template&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=rcmedeiros_template)
-[![Documentation Status](https://readthedocs.org/projects/typescriptjavascriptnode-template/badge/?version=latest)](https://typescriptjavascriptnode-template.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/cicd-template/badge/?version=latest)](https://cicd-template.readthedocs.io/en/latest/?badge=latest)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 
