@@ -14,7 +14,8 @@
     "audit": "snyk test && npm audit",
     "tslint": "tslint --project tsconfig.json --config src/tslint.json",
     "test": "nyc mocha --require ts-node/register --check-leaks --timeout 300 --recursive -exit test/*-test.ts",
-    "coverage": "nyc --reporter=html mocha --require ts-node/register --check-leaks --timeout 300 --recursive -exit test/**/*-test.ts"
+    "coverage": "nyc --reporter=html mocha --require ts-node/register --check-leaks --timeout 300 --recursive -exit test/**/*-test.ts",
+    "docs": "python -m mkdocs serve"
   },
   "nyc": {
     "watermarks": {
