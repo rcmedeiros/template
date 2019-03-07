@@ -54,13 +54,6 @@ jobs:
       - run: npm i snyk
       - run: ./node_modules/.bin/snyk test
 
-  docs:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run: echo "Will generate documentation in this step"
-
   code_review:
     docker:
       - image: circleci/node:10
@@ -304,10 +297,6 @@ workflows:
           filters:
             branches:
               only: develop
-      - docs:
-          filters:
-            branches:
-              only: develop
       - code_review:
           requires:
             - dev_dependencies
@@ -365,12 +354,6 @@ workflows:
               only:
                 - master
                 - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
-      - docs:
-          filters:
-            branches:
-              only:
-                - master
-                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - code_review:
           requires:
             - dev_dependencies
@@ -404,7 +387,6 @@ workflows:
           requires:
             - stamp
             - test
-            - docs
             - code_review
           filters:
             branches:
@@ -414,7 +396,6 @@ workflows:
           requires:
             - stamp
             - test
-            - docs
             - code_review
           filters:
             branches:
