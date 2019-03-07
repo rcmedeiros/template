@@ -1,4 +1,4 @@
-# TypeScript/JavaScript/Node CI/CD Template
+# The Template
 A TypeScript/JavaScript Node Template that does very little other than to demonstrate how to setup a CI/CD project.
 
 This page is but a placeholder. After I set up all integrations, I'll come back here and write a *stark walkthrough for the lazy coder*.
