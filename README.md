@@ -1,4 +1,4 @@
-# Template
+# TypeScript/JavaScript/Node CI/CD Template
 [![npm version](https://badge.fury.io/js/%40rcmedeiros%2Ftslint-config.svg)](https://badge.fury.io/js/%40rcmedeiros%2Ftslint-config)
 [![CircleCI](https://circleci.com/gh/rcmedeiros/template.svg?style=svg&circle-token=0cbb60bd086a80279822859c0ed2610d5428a223)](https://circleci.com/gh/rcmedeiros/template)
 [![Known Vulnerabilities](https://snyk.io/test/github/rcmedeiros/template/badge.svg?targetFile=package.json)](https://snyk.io/test/github/rcmedeiros/template?targetFile=package.json)
@@ -24,10 +24,10 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
 * Coverage reports by [Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/)
 * Maintainability and code coverage by [Code Climate: Quality](https://codeclimate.com/quality/pricing/)
 * Lots of fine grained measurements by [Sonarcloud](https://sonarcloud.io)
+* Documentation hosted by [ReadTheDocs](https://readthedocs.org/).
 
 ## Up Next
 
-* Documentation hosted by [ReadTheDocs](https://readthedocs.org/).
 * Spies, Stubs and Mocks by [Sinon.JS](https://sinonjs.org/) (or maybe [JsMockito](https://jsmockito.org/))
 * [Greenkeeper](https://greenkeeper.io)
 

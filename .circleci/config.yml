@@ -159,7 +159,7 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.projectBaseDir=/home/circleci/project/ \
             -Dsonar.sources=src \
-            -Dsonar.typescript.exclusions=node_modules/**,coverage/**,sonar*/**,dist/**,reports/**,test/** \
+            -Dsonar.typescript.exclusions=node_modules/**,coverage/**,sonar*/**,dist/**,reports/**,test/**,docs/** \
             -Dsonar.typescript.tsconfigPath=tsconfig.json \
             -Dsonar.typescript.file.suffixes=.ts \
             -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info \
