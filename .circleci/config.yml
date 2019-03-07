@@ -163,6 +163,7 @@ jobs:
             -Dsonar.typescript.tsconfigPath=tsconfig.json \
             -Dsonar.typescript.file.suffixes=.ts \
             -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info \
+            -Dsonar.coverage.exclusions=src/index.ts \
             -Dsonar.login=${SONAR_LOGIN}
             cat -n .scannerwork/report-task.txt
       - save_cache:
