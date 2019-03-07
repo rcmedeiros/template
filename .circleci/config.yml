@@ -144,31 +144,23 @@ jobs:
             ./cc-test-reporter after-build -t lcov
       - restore_cache:
           name: Restore Sonarcloud Scanner
-          key: sonar-scanner-3.3.0.1492-linux
+          key: _sonar-scanner-3.3.0.1492-linux
       - run:
           name: Download Sonarcloud Scanner (if still necessary)
           command: |
             chmod +x .circleci/install_sonar-scanner.sh
             ./.circleci/install_sonar-scanner.sh
-      - save_cache:
-          name: Cache Sonarcloud Scanner
-          key: sonar-scanner-3.3.0.1492-linux
-          paths:
-            - sonar-scanner-3.3.0.1492-linux
       - run:
           name: Sonarcloud Scan
           command: |
-            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner \
-            -Dsonar.projectKey=rcmedeiros_template \
-            -Dsonar.organization=rcmedeiros-github \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.sources=./ \
-            -Dsonar.typescript.tsconfigPath=./tsconfig.json \
-            -Dsonar.typescript.file.suffixes=.ts \
-            -Dsonar.typescript.exclusions=node_modules/**,dist/**,coverage/**,sonar*/** \
-            -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info \
+            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -X \
             -Dsonar.login=${SONAR_LOGIN}
             cat .scannerwork/report-task.txt
+      - save_cache:
+          name: Cache Sonarcloud Scanner
+          key: _sonar-scanner-3.3.0.1492-linux
+          paths:
+            - sonar-scanner-3.3.0.1492-linux
       - store_test_results:
           path: reports
 
