@@ -24,10 +24,10 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
 * Coverage reports by [Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/)
 * Maintainability and code coverage by [Code Climate: Quality](https://codeclimate.com/quality/pricing/)
 * Lots of fine grained measurements by [Sonarcloud](https://sonarcloud.io)
+* Documentation hosted by [ReadTheDocs](https://readthedocs.org/).
 
 ## Up Next
 
-* Documentation hosted by [ReadTheDocs](https://readthedocs.org/).
 * Spies, Stubs and Mocks by [Sinon.JS](https://sinonjs.org/) (or maybe [JsMockito](https://jsmockito.org/))
 * [Greenkeeper](https://greenkeeper.io)
 
