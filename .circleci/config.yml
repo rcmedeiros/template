@@ -161,9 +161,14 @@ jobs:
             ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner \
             -Dsonar.projectKey=rcmedeiros_template \
             -Dsonar.organization=rcmedeiros-github \
-            -Dsonar.sources=./src \
             -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.sources=./ \
+            -Dsonar.typescript.tsconfigPath=./tsconfig.json \
+            -Dsonar.typescript.file.suffixes=.ts \
+            -Dsonar.typescript.exclusions=**/node_modules/**,dist/**,coverage/**,sonar*/** \
+            -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info \
             -Dsonar.login=${SONAR_LOGIN}
+            cat .scannerwork/report-task.txt
       - store_test_results:
           path: reports
 
