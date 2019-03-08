@@ -3,6 +3,8 @@ A TypeScript/JavaScript Node Template that does very little other than to demons
 
 This page is but a placeholder. After I set up all integrations, I'll come back here and write a *stark walkthrough for the lazy coder*.
 
+***hi***
+
 Until then, behold my badges :)
 
 [![npm version](https://badge.fury.io/js/%40rcmedeiros%2Ftslint-config.svg)](https://badge.fury.io/js/%40rcmedeiros%2Ftslint-config)
