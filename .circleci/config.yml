@@ -9,7 +9,7 @@ jobs:
           name: Install dependencies
           command: pip install -r requirements.txt
       - run:
-          name: Build Site
+          name:
           command: python mkdocs build
   stamp:
     docker:
