@@ -5,7 +5,12 @@ jobs:
       - image: circleci/python:3.7.2
     steps:
       - checkout
-
+      - run:
+          name: Install dependencies
+          command: pip install -r requirements.txt
+      - run:
+        name:
+        command: python mkdocs build
   stamp:
     docker:
       - image: circleci/node:10
