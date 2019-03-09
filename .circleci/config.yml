@@ -1,5 +1,11 @@
 version: 2.1
 jobs:
+  docs:
+    docker:
+      - image: circleci/python:3.7.2
+    steps:
+      - checkout
+
   stamp:
     docker:
       - image: circleci/node:10
@@ -463,3 +469,9 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
+  docs:
+    jobs:
+      - docs:
+          filters:
+            branches:
+              ignore: /feature/ghpages
