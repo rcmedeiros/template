@@ -1,25 +1,48 @@
 site_name: rcmedeiros/template
 site_description:
-    A TypeScript/JavaScript Node Template that does very little other than to
-    demonstrate how to setup a CI/CD project.
+      A TypeScript/JavaScript Node Template that does very little other than to
+      demonstrate how to setup a CI/CD project.
 repo_url: https://github.com/rcmedeiros/template/
 edit_uri: edit/develop/docs
 dev_addr: 127.0.0.1:80
 markdown_extensions:
-    - nl2br
-    - sane_lists
-    - codehilite:
-          linenums: True
-          noclasses: True
-          guess_lang: False
-          use_pygments: True
-          pygments_style: monokai
-    - smarty:
-          smart_angled_quotes: True
-    - admonition
-    - abbr
-    - def_list
-    - footnotes
+      - nl2br
+      - codehilite:
+              linenums: None
+              noclasses: True
+              guess_lang: False
+              use_pygments: True
+              pygments_style: monokai
+      - smarty:
+              smart_angled_quotes: True
+      - admonition
+      - abbr
+      - def_list
+      - footnotes
+      - attr_list
+      - toc
 nav:
-    - Home: index.md
-theme: readthedocs
+      - Home: index.md
+      - Conventions:
+              - Gitflow: gitflow.md
+              - SemVer: semver.md
+              - Badges: badges.md
+      - Dependencies:
+              - Freshness: freshness.md
+              - Security: security.md
+      - Tests:
+              - Unit Tests: tests.md
+              - Mocks: mocks.md
+              - Code Coverage: coverage.md
+      - Analytics:
+              - Analytics: analytics.md
+              - Online Coverage: online_coverage.md
+              - Code Quality: code_quality.md
+      - Documentation:
+              - MkDocs: mkdocs.md
+              - ReadTheDocs: rtd.md
+              - Extensions: extensions.md
+              - Visual Code: vscode.md
+theme: material
+extra_css:
+      - /css/monokai.css

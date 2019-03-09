@@ -3,5 +3,7 @@
     "tslint.autoFixOnSave": true,
     "yaml.format.proseWrap": "always",
     "yaml.format.singleQuote": true,
-    "yaml.format.enable": true
+    "yaml.format.enable": true,
+    "markdown.extension.toc.githubCompatibility": true,
+    "MarkdownPaste.path": "./assets/"
 }
