@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: sudo pip install -r --user mkdocs/requirements.txt
+          command: sudo pip install --user -r mkdocs/requirements.txt
       - run:
           name:
           command: python mkdocs build
