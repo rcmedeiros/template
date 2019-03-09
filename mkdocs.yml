@@ -3,7 +3,7 @@ site_description:
     A TypeScript/JavaScript Node Template that does very little other than to
     demonstrate how to setup a CI/CD project.
 repo_url: https://github.com/rcmedeiros/template/
-edit_uri: edit/develop/docs
+edit_uri: edit/develop/mkdocs
 dev_addr: 127.0.0.1:80
 
 docs_dir: mkdocs
