@@ -8,7 +8,7 @@ jobs:
       - restore_cache:
           key: pydependencies5-{{ checksum "mkdocs/requirements.txt" }}
       - run:
-          name: Install dependencies
+          name: Install Python dependencies
           command: |
             pip install -r mkdocs/requirements.txt
       - save_cache:
@@ -16,13 +16,13 @@ jobs:
           paths:
             - '/usr/local/lib/python3.7/site-packages'
       - run:
-          name:
+          name: Build site
           command: python -m mkdocs build --strict --theme material --verbose
       - add_ssh_keys:
           fingerprints:
             - '3a:91:1a:54:32:12:91:3f:6b:a5:25:8b:18:ec:ce:7c'
       - run:
-          name: Script
+          name: Push new version
           command: |
             chmod +x .circleci/push_docs_site.sh
             ./.circleci/push_docs_site.sh
@@ -32,8 +32,12 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
-      - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      - run:
+          name: Stamp build number into package.json
+          command: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
+      - run:
+          name: Create .npmrc file
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
       - persist_to_workspace:
           root: ./
           paths:
@@ -48,6 +52,7 @@ jobs:
       - restore_cache:
           key: dependencies-{{ checksum "package.json" }}
       - run:
+          name: Install production dependencies
           command: |
             chmod +x .circleci/install.sh
             ./.circleci/install.sh
@@ -64,6 +69,7 @@ jobs:
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
       - run:
+          name: Install development dependencies
           command: |
             chmod +x .circleci/install.sh
             ./.circleci/install.sh dev
@@ -77,9 +83,15 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: npm audit
-      - run: npm i snyk
-      - run: ./node_modules/.bin/snyk test
+      - run:
+          name: Audit with NPM
+          command: npm audit
+      - run:
+          name: Install Snyk
+          command: npm i snyk
+      - run:
+          name: Audit with Snyk
+          command: ./node_modules/.bin/snyk test
 
   code_review:
     docker:
@@ -90,10 +102,12 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - restore_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
-      - run: |
-          ./node_modules/.bin/tslint --project tsconfig.json \
-          --config src/tslint.json --format junit \
-          --out ./reports/tslint/tslint.xml
+      - run:
+          name: Run TSLint
+          command: |
+            ./node_modules/.bin/tslint --project tsconfig.json \
+            --config src/tslint.json --format junit \
+            --out ./reports/tslint/tslint.xml
       - store_test_results:
           path: reports
 
@@ -112,16 +126,20 @@ jobs:
           condition: << parameters.production >>
           steps:
             - run:
-                ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
-                --skipLibCheck true --sourceMap false --listFiles true
-                --listEmittedFiles true --declaration true
+                name: Build for development
+                command: |
+                  ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
+                  --skipLibCheck true --sourceMap false --listFiles true
+                  --listEmittedFiles true --declaration true
       - unless:
           condition: << parameters.production >>
           steps:
             - run:
-                ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true
-                --listFiles true --listEmittedFiles true --declaration true
-                --sourceMap false --inlineSourceMap true --inlineSources true
+                name: Build for production
+                command: |
+                  ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true
+                  --listFiles true --listEmittedFiles true --declaration true
+                  --sourceMap false --inlineSourceMap true --inlineSources true
       - persist_to_workspace:
           root: ./
           paths:
@@ -202,9 +220,15 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./
-      - run: mv dist/* .
-      - run: sudo apt-get install tree -y && tree -a
-      - run: npm publish --access public --tag dev --dry-run
+      - run:
+          name: Bring transpiled code to root
+          command: mv dist/* .
+      - run:
+          name: Show tree
+          command: sudo apt-get install tree -y && tree -a
+      - run:
+          name: Publish
+          command: npm publish --access public --tag dev --dry-run
 
   cache_release:
     parameters:
@@ -223,14 +247,20 @@ jobs:
       - when:
           condition: << parameters.master_branch >>
           steps:
-            - run: |
-                echo "v$(cat package.json | jq -r '.version' | cut -f1 -d'-')" > .circleci/.release
+            - run:
+                name: Get release tag
+                command: |
+                  echo "v$(cat package.json | jq -r '.version' | cut -f1 -d'-')" > .circleci/.release
       - when:
           condition: << parameters.release_branch >>
           steps:
-            - run: |
-                echo "${CIRCLE_BRANCH}" > .circleci/.release
-      - run: cat .circleci/.release
+            - run:
+                name: Get pre-release tag
+                command: |
+                  echo "${CIRCLE_BRANCH}" > .circleci/.release
+      - run:
+          name: Print tag
+          command: cat .circleci/.release
       - save_cache:
           key: release-{{ checksum ".circleci/.release" }}
           paths:
@@ -251,12 +281,18 @@ jobs:
       - when:
           condition: << parameters.master_branch >>
           steps:
-            - run: echo "${CIRCLE_TAG}" > .circleci/.release
+            - run:
+                name: Get release tag
+                command: echo "${CIRCLE_TAG}" > .circleci/.release
       - when:
           condition: << parameters.release_branch >>
           steps:
-            - run: echo "release/${CIRCLE_TAG}" > .circleci/.release
-      - run: cat .circleci/.release
+            - run:
+                name: Get pre-release tag
+                command: echo "release/${CIRCLE_TAG}" > .circleci/.release
+      - run:
+          name: Print tag
+          command: cat .circleci/.release
       - restore_cache:
           key: release-{{ checksum ".circleci/.release" }}
       - run: sudo apt-get install tree -y && tree -a
@@ -284,24 +320,34 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
-      - run: mv dist/* .
+      - run:
+          name: Bring transpiled code to root
+          command: mv dist/* .
       - run: sudo apt-get install tree -y && tree -a
       - when:
           condition: << parameters.alpha >>
           steps:
-            - run: npm publish --access public --tag alpha --dry-run
+            - run:
+                name: Publish Alpha Version
+                command: npm publish --access public --tag alpha --dry-run
       - when:
           condition: << parameters.beta >>
           steps:
-            - run: npm publish --access public --tag beta --dry-run
+            - run:
+                name: Publish Beta Version
+                command: npm publish --access public --tag beta --dry-run
       - when:
           condition: << parameters.release_candidate >>
           steps:
-            - run: npm publish --access public --tag next --dry-run
+            - run:
+                name: Publish Release Candidate
+                command: npm publish --access public --tag next --dry-run
       - when:
           condition: << parameters.stable >>
           steps:
-            - run: npm publish --access public --dry-run
+            - run:
+                name: Publish Stable Version
+                command: npm publish --access public --dry-run
 
 workflows:
   development_commit:
