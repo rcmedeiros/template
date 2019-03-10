@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   docs:
     docker:
-      - image: circleci/python
+      - image: circleci/node:10
     steps:
       - run: echo 'export PATH=/root/.local/bin:$PATH' >> $BASH_ENV
       - checkout
