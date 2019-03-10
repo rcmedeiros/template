@@ -18,6 +18,9 @@ jobs:
       - run:
           name:
           command: python -m mkdocs build --strict --theme material --verbose
+      - add_ssh_keys:
+          fingerprints:
+            - '3a:91:1a:54:32:12:91:3f:6b:a5:25:8b:18:ec:ce:7c'
       - run:
           name: Script
           command: |
