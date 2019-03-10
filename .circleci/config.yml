@@ -22,8 +22,12 @@ jobs:
             - '/usr/local/lib/python3.7/site-packages'
       - run:
           name:
-          command: python -m mkdocs build
-      - run: git status
+          command: python -m mkdocs build --strict --theme material --verbose
+      - run:
+          name: script
+          command: |
+            chmod +x ./circleci/push_docs_site.sh
+            ./.circleci/push_docs_site.sh
   stamp:
     docker:
       - image: circleci/node:10
@@ -46,7 +50,7 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - run:
           command: |
-            chmod 700 .circleci/install.sh
+            chmod +x .circleci/install.sh
             ./.circleci/install.sh
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}
@@ -62,7 +66,7 @@ jobs:
           key: dev_dependencies-{{ checksum "package.json" }}
       - run:
           command: |
-            chmod 700 .circleci/install.sh
+            chmod +x .circleci/install.sh
             ./.circleci/install.sh dev
       - save_cache:
           key: dev_dependencies-{{ checksum "package.json" }}
