@@ -3,8 +3,6 @@ jobs:
   docs:
     docker:
       - image: circleci/python
-        environment:
-          PATH: '$PATH:/root/.local/bin'
     steps:
       - checkout
       - run:
