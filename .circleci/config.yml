@@ -4,12 +4,12 @@ jobs:
     docker:
       - image: python:3.7.2
     steps:
-      - run:
-          name: Set path
-          command: |
-            echo 'export PATH=/root/.local/bin:$PATH' >> $BASH_ENV
-            echo 'export PATH=/home/circleci/.local/bin:$PATH' >> $BASH_ENV
-            printenv | grep PATH
+      # - run:
+      #     name: Set path
+      #     command: |
+      #       echo 'export PATH=/root/.local/bin:$PATH' >> $BASH_ENV
+      #       echo 'export PATH=/home/circleci/.local/bin:$PATH' >> $BASH_ENV
+      #       printenv | grep PATH
       - checkout
       - run: python -m site
       - run: python -c "import site; print(site.getsitepackages())"
@@ -17,15 +17,15 @@ jobs:
       - run: pip list --user
       - run: pip freeze --user
       - restore_cache:
-          key: pydependencies4-{{ checksum "mkdocs/requirements.txt" }}
+          key: pydependencies5-{{ checksum "mkdocs/requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
             pip install -r mkdocs/requirements.txt
       - save_cache:
-          key: pydependencies4-{{ checksum "mkdocs/requirements.txt" }}
+          key: pydependencies5-{{ checksum "mkdocs/requirements.txt" }}
           paths:
-            - '/root/.local/lib/python3.7/site-packages'
+            #- '/root/.local/lib/python3.7/site-packages'
             - '/usr/local/lib/python3.7/site-packages'
 
       - run: python -m site
