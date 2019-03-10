@@ -4,18 +4,29 @@ jobs:
     docker:
       - image: circleci/python:3.7.2
     steps:
-      - run: |
-          echo 'export PATH=/root/.local/bin:$PATH' >> $BASH_ENV
-          echo 'export PATH=/home/circleci/.local/bin:$PATH' >> $BASH_ENV
-      - checkout
       - run:
-          name: Env
+          name: Set path
           command: |
+            echo 'export PATH=/root/.local/bin:$PATH' >> $BASH_ENV
+            echo 'export PATH=/home/circleci/.local/bin:$PATH' >> $BASH_ENV
             printenv | grep PATH
+      - checkout
+      # - restore_cache:
+      #     key: py_dependencies-{{ checksum "mkdocs/requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
             pip install --user -r mkdocs/requirements.txt
+      # - save_cache:
+      #     key: py_dependencies-{{ checksum "mkdocs/requirements.txt" }}
+      #     paths:
+      #       - "/usr/local/bin"
+      #       - "/usr/local/lib/python3.6/site-packages"
+      - run: python -m site
+      - run: python -c "import site; print(site.getsitepackages())"
+      - run: python -m site --user-site
+      - run: pip list --user
+      - run: pip freeze --user
       - run:
           name:
           command: python -m mkdocs build
