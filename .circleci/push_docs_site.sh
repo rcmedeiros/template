@@ -12,7 +12,7 @@ then
     git add --all docs/
     git config --global user.email "circleci@rafaelmedeiros.eti.br"
     git config --global user.name "CircleCI"
-    git commit -m "Automated docs site generation build ${CIRCLE_BUILD_NUM}"
+    git commit -m "Automated push - build ${CIRCLE_BUILD_NUM}"
     git push --set-upstream origin ${CIRCLE_BRANCH}
 else
     echo "No changes to push"
