@@ -9,9 +9,18 @@ jobs:
           name: Path
           command: |
             echo "PATH=$PATH:/root/.local/bin;export PATH;" >> ~/.bashrc
+            cat ~/.bashrc
             source ~/.bashrc
       - run:
           name: Env
+          command: |
+            printenv
+      - run:
+          name: Path 2
+          command: |
+            PATH=$PATH:/root/.local/bin
+      - run:
+          name: Env 2
           command: |
             printenv
       - run:
