@@ -7,7 +7,9 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: sudo pip install --user -r mkdocs/requirements.txt
+          command: |
+            sudo export PATH=/root/.local/bin:$PATH
+            sudo pip install --user -r mkdocs/requirements.txt
       - run:
           name:
           command: python mkdocs build
