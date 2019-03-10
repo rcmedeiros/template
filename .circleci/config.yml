@@ -129,16 +129,16 @@ jobs:
                 name: Build for development
                 command:
                   ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
-                  \ --skipLibCheck true --sourceMap false --listFiles true \
+                  --skipLibCheck true --sourceMap false --listFiles true
                   --listEmittedFiles true --declaration true
       - unless:
           condition: << parameters.production >>
           steps:
             - run:
                 name: Build for production
-                command: |
-                  ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true \
-                  --listFiles true --listEmittedFiles true --declaration true \
+                command:
+                  ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true
+                  --listFiles true --listEmittedFiles true --declaration true
                   --sourceMap false --inlineSourceMap true --inlineSources true
       - persist_to_workspace:
           root: ./
