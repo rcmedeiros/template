@@ -11,28 +11,28 @@ jobs:
             echo 'export PATH=/home/circleci/.local/bin:$PATH' >> $BASH_ENV
             printenv | grep PATH
       - checkout
-      - run: python -m site
-      - run: python -c "import site; print(site.getsitepackages())"
-      - run: python -m site --user-site
-      - run: pip list --user
-      - run: pip freeze --user
-      # - restore_cache:
-      #     key: py_dependencies-{{ checksum "mkdocs/requirements.txt" }}
+      # - run: python -m site
+      # - run: python -c "import site; print(site.getsitepackages())"
+      # - run: python -m site --user-site
+      # - run: pip list --user
+      # - run: pip freeze --user
+      - restore_cache:
+          key: pydependencies3-{{ checksum "mkdocs/requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
             pip install --user -r mkdocs/requirements.txt
-      # - save_cache:
-      #     key: py_dependencies-{{ checksum "mkdocs/requirements.txt" }}
-      #     paths:
-      #       - '/usr/local/lib/python3.7/site-packages'
-      #       - '/home/circleci/.local/lib/python3.7/site-packages'
+      - save_cache:
+          key: pydependencies3-{{ checksum "mkdocs/requirements.txt" }}
+          paths:
+            - '/root/.local/lib/python3.7/site-packages'
+            - '/usr/local/lib/python3.7/site-packages'
 
-      - run: python -m site
-      - run: python -c "import site; print(site.getsitepackages())"
-      - run: python -m site --user-site
-      - run: pip list --user
-      - run: pip freeze --user
+      # - run: python -m site
+      # - run: python -c "import site; print(site.getsitepackages())"
+      # - run: python -m site --user-site
+      # - run: pip list --user
+      # - run: pip freeze --user
       - run:
           name:
           command: python -m mkdocs build
