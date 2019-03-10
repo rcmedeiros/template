@@ -8,6 +8,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Linux
+          command: cat /etc/os-release
+      - run:
           name: Env
           command: |
             printenv | grep PATH
