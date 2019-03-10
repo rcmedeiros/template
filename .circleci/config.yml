@@ -5,11 +5,6 @@ jobs:
       - image: python:3.7.2
     steps:
       - checkout
-      - run: python -m site
-      - run: python -c "import site; print(site.getsitepackages())"
-      - run: python -m site --user-site
-      - run: pip list --user
-      - run: pip freeze --user
       - restore_cache:
           key: pydependencies5-{{ checksum "mkdocs/requirements.txt" }}
       - run:
@@ -24,10 +19,11 @@ jobs:
           name:
           command: python -m mkdocs build --strict --theme material --verbose
       - run:
-          name: script
+          name: Script
           command: |
-            chmod +x ./circleci/push_docs_site.sh
+            chmod +x .circleci/push_docs_site.sh
             ./.circleci/push_docs_site.sh
+
   stamp:
     docker:
       - image: circleci/node:10
