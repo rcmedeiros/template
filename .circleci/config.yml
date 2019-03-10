@@ -318,6 +318,10 @@ workflows:
           filters:
             branches:
               only: develop
+      - docs:
+          filters:
+            branches:
+              only: develop
       - audit_dependencies:
           requires:
             - dev_dependencies
@@ -356,6 +360,12 @@ workflows:
   staging_commit:
     jobs:
       - stamp:
+          filters:
+            branches:
+              only:
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - docs:
           filters:
             branches:
               only:
@@ -415,6 +425,7 @@ workflows:
             - stamp
             - test
             - code_review
+            - docs
           filters:
             branches:
               only: /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
@@ -424,6 +435,7 @@ workflows:
             - stamp
             - test
             - code_review
+            - docs
           filters:
             branches:
               only: master
@@ -490,9 +502,3 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
-  docs:
-    jobs:
-      - docs:
-          filters:
-            branches:
-              ignore: /feature/ghpages
