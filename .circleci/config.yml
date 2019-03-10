@@ -3,8 +3,6 @@ jobs:
   docs:
     docker:
       - image: circleci/python
-        environment:
-          BASH_ENV: ~/.bashrc
     steps:
       - run: echo 'export PATH=/root/.local/bin:$PATH' >> $BASH_ENV
       - checkout
