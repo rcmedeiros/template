@@ -28,11 +28,12 @@ jobs:
             #- '/root/.local/lib/python3.7/site-packages'
             - '/usr/local/lib/python3.7/site-packages'
 
-      - run: python -m site
-      - run: python -c "import site; print(site.getsitepackages())"
-      - run: python -m site --user-site
-      - run: pip list --user
-      - run: pip freeze --user
+      # - run: python -m site
+      # - run: python -c "import site; print(site.getsitepackages())"
+      # - run: python -m site --user-site
+      # - run: pip list --user
+      # - run: pip freeze --user
+      - run: git status
       - run:
           name:
           command: python -m mkdocs build
