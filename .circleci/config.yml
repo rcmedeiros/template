@@ -6,9 +6,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
+          name: Uname
           command: |
             uname -a
+      - run:
+          name: Path
+          command: |
+            PATH="$PATH:/root/.local/bin"
+            sudo pip install --user -r mkdocs/requirements.txt
+      - run:
+          name: Install dependencies
+          command: |
             sudo pip install --user -r mkdocs/requirements.txt
       - run:
           name:
