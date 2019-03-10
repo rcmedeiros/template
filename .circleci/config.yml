@@ -3,25 +3,12 @@ jobs:
   docs:
     docker:
       - image: circleci/python
+        environment:
+          PATH: '$PATH:/root/.local/bin'
     steps:
       - checkout
       - run:
-          name: Path
-          command: |
-            echo "PATH=$PATH:/root/.local/bin" >> ~/.bashrc
-            echo "export PATH" >> ~/.bashrc
-            cat ~/.bashrc
-            source ~/.bashrc
-      - run:
           name: Env
-          command: |
-            printenv | grep PATH
-      - run:
-          name: Path 2
-          command: |
-            PATH=$PATH:/root/.local/bin
-      - run:
-          name: Env 2
           command: |
             printenv | grep PATH
       - run:
