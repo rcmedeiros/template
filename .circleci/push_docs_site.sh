@@ -3,7 +3,7 @@
 git status
 
 # git status | lines containing modified | except lines containing sitemap | count lines
-changes=$(git status | grep -P "(?<=modified:)[ ]*[\w.\/]*" | grep -v "sitemap" | wc -l);
+changes=$(git status | grep -P "(?<=modified:)[ ]*[docs\/][\w.\/]*" | grep -v "sitemap" | wc -l);
 echo "${changes} changes"
 
 if [[ changes -ge 1 ]];
