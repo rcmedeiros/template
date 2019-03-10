@@ -19,7 +19,7 @@ jobs:
             pip install -r mkdocs/requirements.txt
       - run:
           name:
-          command: python mkdocs build
+          command: python -m mkdocs build
   stamp:
     docker:
       - image: circleci/node:10
