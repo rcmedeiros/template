@@ -6,14 +6,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Uname
-          command: |
-            uname -a
-      - run:
           name: Path
           command: |
             echo "PATH=$PATH:/root/.local/bin;export PATH;" >> ~/.bashrc
             source ~/.bashrc
+      - run:
+          name: Env
+          command: |
+            printenv
       - run:
           name: Install dependencies
           command: |
