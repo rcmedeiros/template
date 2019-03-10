@@ -12,8 +12,8 @@ jobs:
       - run:
           name: Path
           command: |
-            PATH="$PATH:/root/.local/bin"
-            sudo pip install --user -r mkdocs/requirements.txt
+            echo "PATH=$PATH:/root/.local/bin;export PATH;" >> ~/.bashrc
+            source ~/.bashrc
       - run:
           name: Install dependencies
           command: |
