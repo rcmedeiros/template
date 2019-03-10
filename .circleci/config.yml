@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   docs:
     docker:
-      - image: circleci/python:3.7.2
+      - image: python:3.7.2
     steps:
       - run:
           name: Set path
@@ -12,13 +12,13 @@ jobs:
             printenv | grep PATH
       - checkout
       - restore_cache:
-          key: py_dependencies-{{ checksum "mkdocs/requirements.txt" }}
+          key: pydependencies-{{ checksum "mkdocs/requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
             pip install --user -r mkdocs/requirements.txt
       - save_cache:
-          key: py_dependencies-{{ checksum "mkdocs/requirements.txt" }}
+          key: pydependencies-{{ checksum "mkdocs/requirements.txt" }}
           paths:
             - '/usr/local/lib/python3.7/site-packages'
             - '/home/circleci/.local/lib/python3.7/site-packages'
