@@ -8,13 +8,14 @@ jobs:
       - run:
           name: Path
           command: |
-            echo "PATH=$PATH:/root/.local/bin;export PATH;" >> ~/.bashrc
+            echo "PATH=$PATH:/root/.local/bin" >> ~/.bashrc
+            echo "export PATH" >> ~/.bashrc
             cat ~/.bashrc
             source ~/.bashrc
       - run:
           name: Env
           command: |
-            printenv
+            printenv | grep PATH
       - run:
           name: Path 2
           command: |
@@ -22,7 +23,7 @@ jobs:
       - run:
           name: Env 2
           command: |
-            printenv
+            printenv | grep PATH
       - run:
           name: Install dependencies
           command: |
