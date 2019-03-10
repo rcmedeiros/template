@@ -8,6 +8,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            uname -a
             sudo pip install --user -r mkdocs/requirements.txt
       - run:
           name:
