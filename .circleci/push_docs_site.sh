@@ -1,14 +1,16 @@
 #!/bin/bash
 
-status=$(git status | grep -P "(?<=modified:)[ ]*[docs\/][\w.\/]*")
-echo "status\n${status}"
-# git status | lines containing modified | except lines containing sitemap | count lines
-changes=$( ${status} | grep -v "sitemap" | wc -l);
-echo "${changes} changes"
+status=$(git status | grep "docs/")
+echo "status"
+echo "${status}"
+
+changes=$( echo "${status}" | grep -v "sitemap" | wc -l);
 
 if [[ changes -ge 1 ]];
 then
-    echo "I shall proceed"
+    echo "${changes} changes to push"
+    git add --all docs/
+    git commit -m "Automated docs site generation build ${CIRCLE_BUILD_NUM}"
 else
-    echo "nothing to push"
+    echo "No changes to push"
 fi
