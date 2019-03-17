@@ -1,6 +1,7 @@
 import { it, describe } from "mocha"
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
+chai.should();
 
 chai.use(chaiHttp)
 
@@ -32,6 +33,7 @@ describe('brew', () => {
             .type('form')
             .send({ t: 'Himalaya Darjeeling' })
             .end((err, res) => {
+                res.status.should.be.equal(200);
                 expect(res.status).to.be.equal(200);
                 expect(res.body.tea).to.be.equal('Himalaya Darjeeling');
                 done(err);

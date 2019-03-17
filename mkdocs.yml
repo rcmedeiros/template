@@ -1,7 +1,7 @@
 site_name: rcmedeiros/template
 site_description:
-  A TypeScript/JavaScript Node Template that does very little other than to
-  demonstrate how to setup a CI/CD project.
+    A TypeScript/JavaScript Node Template that does very little other than to
+    demonstrate how to setup a CI/CD project.
 repo_url: https://github.com/rcmedeiros/template/
 edit_uri: edit/develop/mkdocs
 dev_addr: 127.0.0.1:80
@@ -10,45 +10,45 @@ docs_dir: mkdocs
 site_dir: docs
 
 markdown_extensions:
-  - nl2br
-  - codehilite:
-      linenums: None
-      noclasses: True
-      guess_lang: False
-      use_pygments: True
-      pygments_style: monokai
-  - smarty:
-      smart_angled_quotes: True
-  - admonition
-  - abbr
-  - def_list
-  - footnotes
-  - attr_list
-  - toc
+    - nl2br
+    - codehilite:
+          linenums: None
+          noclasses: True
+          guess_lang: False
+          use_pygments: True
+          pygments_style: monokai
+    - smarty:
+          smart_angled_quotes: True
+    - admonition
+    - abbr
+    - def_list
+    - footnotes
+    - attr_list
+    - toc
 nav:
-  - Home: index.md
-  - Continuous Delivery:
-      - Pipeline: pipeline.md
-  - Conventions:
-      - SemVer: semver.md
-      - Badges: badges.md
-  - Dependencies:
-      - Up-to-dateness: uptodateness.md
-      - Security: security.md
-  - Tests:
-      - Unit Tests: tests.md
-      - Mocks: mocks.md
-      - Code Coverage: coverage.md
-  - Analytics:
-      - Monitoring: monitoring.md
-      - Analytics: analytics.md
-      - Online Coverage: online_coverage.md
-      - Code Quality: code_quality.md
-  - Documentation:
-      - MkDocs: mkdocs.md
-      - ReadTheDocs: rtd.md
-      - Extensions: extensions.md
-      - Visual Code: vscode.md
+    - Home: index.md
+    - Continuous Delivery:
+          - Pipeline: pipeline.md
+    - Conventions:
+          - SemVer: semver.md
+          - Badges: badges.md
+    - Dependencies:
+          - Up-to-dateness: uptodateness.md
+          - Security: security.md
+    - Tests:
+          - Tests: tests.md
+          - Mocks: mocks.md
+          - Code Coverage: coverage.md
+    - Analytics:
+          - Monitoring: monitoring.md
+          - Analytics: analytics.md
+          - Online Coverage: online_coverage.md
+          - Code Quality: code_quality.md
+    - Documentation:
+          - MkDocs: mkdocs.md
+          - ReadTheDocs: rtd.md
+          - Extensions: extensions.md
+          - Visual Code: vscode.md
 theme: readthedocs
 extra_css:
-  - /css/monokai.css
+    - /css/monokai.css
