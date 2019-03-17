@@ -565,14 +565,6 @@ test:
       production: true
       requires:
         - dev_dependencies
-      filters:
-        branches:
-          only:
-            - feature/docs
     - build_dev:
       requires:
         - dev_dependencies
-      filters:
-        branches:
-          only:
-            - feature/docs
