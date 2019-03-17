@@ -551,3 +551,39 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
+  random_commit:
+    jobs:
+      - dependencies:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - dev_dependencies:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - build:
+          requires:
+            - dev_dependencies
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - test:
+          requires:
+            - dependencies
+            - dev_dependencies
+            - build
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
