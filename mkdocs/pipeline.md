@@ -118,8 +118,8 @@ The same as a development one, except that failing to push the docs fails the wh
 
 Upon creating a tag matching a previously run *staging_commit*, the package is published accordingly. If it's a stable release, a manual approval is necessary.
 
-### random_commig
+### random_commit
 
 ![](assets/random_commit.png)
 
-In the event 
+For any other commit unrelated to the development, release or master flow (maybe a hotfix, or a merged PR), the random_commit will kick in only to guarantee the reviews, audits and tests. 
