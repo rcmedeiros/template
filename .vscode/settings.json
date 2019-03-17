@@ -7,8 +7,9 @@
     "markdown.extension.toc.githubCompatibility": true,
     "MarkdownPaste.path": "./assets/",
     "cSpell.words": [
-        "Greenkeeper",
+        "greenkeeper",
         "npmrc",
+        "qube",
         "webhooks"
     ]
 }
