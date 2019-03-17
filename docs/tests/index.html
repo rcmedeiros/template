@@ -38,7 +38,7 @@
     
     
       
-        <title>Unit Tests - rcmedeiros/template</title>
+        <title>Tests - rcmedeiros/template</title>
       
     
     
@@ -98,7 +98,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#unit-tests" tabindex="1" class="md-skip">
+      <a href="#tests" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -123,7 +123,7 @@
               rcmedeiros/template
             </span>
             <span class="md-header-nav__topic">
-              Unit Tests
+              Tests
             </span>
           
         </div>
@@ -406,9 +406,52 @@
       
     
     
-    <a href="./" title="Unit Tests" class="md-nav__link md-nav__link--active">
-      Unit Tests
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Tests
+      </label>
+    
+    <a href="./" title="Tests" class="md-nav__link md-nav__link--active">
+      Tests
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mocha" title="Mocha" class="md-nav__link">
+    Mocha
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ts-node" title="TS-Node" class="md-nav__link">
+    TS-Node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chai" title="Chai" class="md-nav__link">
+    Chai
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -603,6 +646,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mocha" title="Mocha" class="md-nav__link">
+    Mocha
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ts-node" title="TS-Node" class="md-nav__link">
+    TS-Node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chai" title="Chai" class="md-nav__link">
+    Chai
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -616,7 +689,26 @@
                   <a href="https://github.com/rcmedeiros/template/edit/develop/mkdocs/tests.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="unit-tests">Unit Tests</h1>
+                <h1 id="tests">Tests</h1>
+<p>Tests are a complex if not polemic topic. TDD or not TDD, not every automated test is an unit test, not every unit test needs to be automated. But frameworks have to be deployed to guarantee regression tests, which is how you know that the feature of fix being introduced now won&rsquo;t break anything that was working perfectly before.</p>
+<h2 id="mocha">Mocha</h2>
+<p>This project uses <a href="https://mochajs.org/">Mocha</a> for that, only because it&rsquo;s the one I learned first and always used in the past. I sincerely can&rsquo;t say anything about the others but I&rsquo;ll sure give <a href="https://jestjs.io/">Jest</a> a try. It has <a href="https://www.npmtrends.com/mocha-vs-jest-vs-jasmine-vs-karma">increased its popularity</a> this year and I ought to know why.</p>
+<h2 id="ts-node">TS-Node</h2>
+<p>Mocha is a JavaScript testing framework, and the code to test is written in TypeScript. To make this work, we use ts-node, a TypeScript execution and <abbr title="read–eval–print loop">REPL</abbr> for node.js. In short, it transpiles the code on-the-fly, no need to build-ts or watch-ts. All you have to do is to add <code>--require ts-node/register</code> as a command line parameter.</p>
+<h2 id="chai">Chai</h2>
+<p>To make the tests clearer and semantically pleasant, we use Chai. it&rsquo;s an assertion library and has the sole function of turning this:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">assert</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">equal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">res</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+
+
+<p>into this:</p>
+<div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">res</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">equal</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
+<span style="color: #75715e">// or...</span>
+ <span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">res</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">to</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">equal</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+
+
+<p>It may look foolish, but after a couple hundred tests, code that looks like description helps a lot.</p>
                 
                   
                 
