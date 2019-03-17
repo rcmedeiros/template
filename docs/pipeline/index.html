@@ -38,7 +38,7 @@
     
     
       
-        <title>Unit Tests - rcmedeiros/template</title>
+        <title>Pipeline - rcmedeiros/template</title>
       
     
     
@@ -98,7 +98,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#unit-tests" tabindex="1" class="md-skip">
+      <a href="#pipeline" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -123,7 +123,7 @@
               rcmedeiros/template
             </span>
             <span class="md-header-nav__topic">
-              Unit Tests
+              Pipeline
             </span>
           
         </div>
@@ -243,10 +243,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Continuous Delivery
@@ -262,11 +264,84 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../pipeline/" title="Pipeline" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Pipeline
+      </label>
+    
+    <a href="./" title="Pipeline" class="md-nav__link md-nav__link--active">
       Pipeline
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stamp" title="stamp" class="md-nav__link">
+    stamp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-and-dev_dependencies" title="dependencies and dev_dependencies" class="md-nav__link">
+    dependencies and dev_dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docs" title="docs" class="md-nav__link">
+    docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit_dependencies" title="audit_dependencies" class="md-nav__link">
+    audit_dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code_review" title="code_review" class="md-nav__link">
+    code_review
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build" title="build" class="md-nav__link">
+    build
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -375,12 +450,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       Tests
@@ -396,20 +469,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Unit Tests" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../tests/" title="Unit Tests" class="md-nav__link">
       Unit Tests
     </a>
-    
   </li>
 
         
@@ -603,6 +667,57 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stamp" title="stamp" class="md-nav__link">
+    stamp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-and-dev_dependencies" title="dependencies and dev_dependencies" class="md-nav__link">
+    dependencies and dev_dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docs" title="docs" class="md-nav__link">
+    docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit_dependencies" title="audit_dependencies" class="md-nav__link">
+    audit_dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code_review" title="code_review" class="md-nav__link">
+    code_review
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build" title="build" class="md-nav__link">
+    build
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -613,10 +728,50 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/rcmedeiros/template/edit/develop/mkdocs/tests.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/rcmedeiros/template/edit/develop/mkdocs/pipeline.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="unit-tests">Unit Tests</h1>
+                <h1 id="pipeline">Pipeline</h1>
+<p>For this template, I built the pipeline with CircleCI. I already work with GitLab CI/CD and Travis is quite popular so I chose to try this. It pleased me very much the way I can write parameterized jobs and reuse them in different workflows, the different kinds of persistence, and for the clarity of the final Yaml. It&rsquo;s quite a platform.</p>
+<p>There are three workflows:</p>
+<ul>
+<li><strong>development_commit</strong>: Commits to branch develop;</li>
+<li><strong>staging_commit</strong>: Commits to release or master branches;</li>
+<li><strong>release</strong>: Commits of release tags.</li>
+</ul>
+<p><img alt="" src="../assets/diagram.png" /></p>
+<p>Now open the <a href="https://github.com/rcmedeiros/template/blob/master/.circleci/config.yml">configuration</a> in another window for the text bellow to make sense.</p>
+<h2 id="stamp">stamp</h2>
+<p>Every workflow stars with a stamp. Package.json version tag contains a <em>&ldquo;-dev&rdquo;</em> string that&rsquo;ll get replaced by the unique number of the spawned build, put there for tracking purposes.<br />
+It&rsquo;ll also print the NPM Token to then <em>.npmrc</em> file, for unattended authentication.</p>
+<h2 id="dependencies-and-dev_dependencies">dependencies and dev_dependencies</h2>
+<p>Development and production dependencies are cached separately and indexed by a checksum of package.json. It means it&rsquo;ll download and install them only once per package.json revision, when the checksum changes. That&rsquo;s why I wrote a script that calls <code>npm install</code> only when <em>node_modules</em> don&rsquo;t already exist. And to keep package.json from changing and messing with the checksum function, I had to use the <code>--no-save</code> flag</p>
+<h2 id="docs">docs</h2>
+<p>MkDocs documentation are freely and easily deployed to <a href="http://readthedocs.org">ReadTheDocs</a> through webhooks, and that should be a default approach. However, if your project isn&rsquo;t open source and you need the documentation deployed as a website, I wrote this job to generate the final HTML and push it back to the repository as an automated push. In this case, the folder is being watched and published by GitHub, but it might as well be an <code>htdocs</code> or <code>wwwroot</code> folder in a server elsewhere where files should go through SCP, or an AWS S3 hosted website pushed through AWS CLI. Unattended authentication will be implemented with SSH Keys.</p>
+<p>Open a term like Git Bash and run &lsquo;<code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code>&rsquo;. The e-mail is important, the password should <strong>NOT</strong> be set. You know you did it right if the private key starts with &ldquo;<code>-----BEGIN RSA PRIVATE KEY-----</code>&ldquo;</p>
+<p>Private key is kept with CircleCI, public key goes to the remote server. </p>
+<p>To set up the public key:</p>
+<ul>
+<li>In GitHub, it&rsquo;s the path to the repository plus <code>/settings/keys</code> at the end;</li>
+<li>in GitLab, it&rsquo;s <code>/settings/repository</code>;</li>
+<li>In Bitbucket, it&rsquo;s <code>/admin/access-keys/</code>;</li>
+<li>In a linux server, just add the public key as a new line to <code>~/.ssh/authorized_keys</code>.</li>
+</ul>
+<p>To set up the private key in CircleCI repository (not dashboard, repository!), add <code>/edit#ssh</code> to the URL and click Add SSH Key. Hostname must match. E.g.: <code>github.com</code>. Copy the fingerprint.</p>
+<p>Now in the config.yml, see the fingerprint just before the <em>Push new version</em> command? That&rsquo;s what makes it.</p>
+<p>Don&rsquo;t forget to shred the files. They are meant to be use in these steps but not saved.</p>
+<p>The script <code>.circleci/push_docs_site.sh</code> is there to guarantee that only new versions of the site are going to be pushed. That&rsquo;s because sitemap.xml.gz is always generated regardless whether or not there were modifications, so it&rsquo;ll be left out of the decision.</p>
+<h2 id="audit_dependencies">audit_dependencies</h2>
+<p>It&rsquo;s not enough to make sure your code is tight, the code of the dependencies you use must be verified too. NPM audit is quite enough, but just to be safe I also check with <a href="https://snyk.io/">Snyk</a>, which <a href="https://snyk.io/docs/security/">connects to other vulnerability databases, such as CVEs from NVD and many others</a></p>
+<h2 id="code_review">code_review</h2>
+<p>If you are just starting to code, maybe you have a personal all yours way of organizing your thoughts that almost serves as a signature. It&rsquo;s no much of a problem if you&rsquo;re the only one who maintains it, but even in a small team people need to feel conformable giving maintenance to the code of others. That&rsquo;s why we need a conventional code style. The more consistent you code is, the cleaner will be your commits, and the faster other people will be able to understand it.</p>
+<p><a href="https://palantir.github.io/tslint/">TSLint</a> is the default linter for TypeScript, and it&rsquo;s main objective is to enforce the code style. The most popular set of rules are <a href="https://www.npmjs.com/package/tslint-config-airbnb">tslint-config-airbnb</a>, <a href="https://www.npmjs.com/package/tslint-eslint-rules">tslint-eslint-rules</a> and <a href="https://www.npmjs.com/package/tslint-config-prettier">tslint-config-prettier</a>. Choose one of them, or make yourself another based on one of them. Just do it.</p>
+<p>This job is saving the result as a report in JUnit format because if it fails, you can see the occurrences in CircleCI UI.</p>
+<h2 id="build">build</h2>
+<p>Build is build, no further explanation required. Only this job has a different set of options for production code and development code.</p>
+<!-- A branch is deemed a release branches if it's a valid [SemVer](https://semver.org/) tag preceded with *"release/v"*. Release tags are the same, except there will be no *release/* preceding it. When a tag is committed that maches an existing release branch,
+
+master is also a release branch, but it's  -->
                 
                   
                 
@@ -637,7 +792,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../security/" title="Security" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -646,19 +801,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Security
+                Home
               </span>
             </div>
           </a>
         
         
-          <a href="../mocks/" title="Mocks" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../semver/" title="SemVer" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Mocks
+                SemVer
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
