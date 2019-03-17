@@ -559,12 +559,3 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
-test:
-  jobs:
-    - build_prod:
-      production: true
-      requires:
-        - dev_dependencies
-    - build_dev:
-      requires:
-        - dev_dependencies
