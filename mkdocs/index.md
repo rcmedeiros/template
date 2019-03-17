@@ -1,25 +1,5 @@
 # Stark Docs
 
-I originally made it to myself as a private project where I could copy-and-paste already sorted out configurations to other actual projects. 
+At first I had this project privately to myself where I could copy-and-paste already sorted out configurations to other projects, I think everyone has one of those. Now it's public and others can take advantage of it.
 
-Docs were written for coders in a rush. I just want you to copy-and-paste something that actually works without too much reading. References to actuall documentation are always included for you to dive later on when you have time.
-
-Don't bother navigating through the menu if this table is saying the topic is not already covered.
-
-| Topic           | Covered    |
-|-----------------|------------|
-| GitFlow         | not yet    |
-| SemVer          | not yet    |
-| Badges          | not yet    |
-| Security        | not yet    |
-| Freshness       | not yet    |
-| Unit Tests      | not yet    |
-| Mocks           | not yet    |
-| Code Coverage   | not yet    |
-| Analytics       | not yet    |
-| Online Coverage | not yet    |
-| Code Quality    | not yet    |
-| MkDocs          | **Almost** |
-| ReadTheDocs     | not yet    |
-| Extensions      | not yet    |
-| VisualCode      | not yet    |
+Docs were written for coders in a rush, but I'll try to balance the amount of information not to be too vague. I just want you to copy-and-paste something that actually works without too much reading. References to full documentation are always included for deep dive later on with time.

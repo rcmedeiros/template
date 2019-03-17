@@ -27,18 +27,20 @@ markdown_extensions:
   - toc
 nav:
   - Home: index.md
+  - Continuous Delivery:
+      - Pipeline: pipeline.md
   - Conventions:
-      - Gitflow: gitflow.md
       - SemVer: semver.md
       - Badges: badges.md
   - Dependencies:
-      - Freshness: freshness.md
+      - Up-to-dateness: uptodateness.md
       - Security: security.md
   - Tests:
       - Unit Tests: tests.md
       - Mocks: mocks.md
       - Code Coverage: coverage.md
   - Analytics:
+      - Monitoring: monitoring.md
       - Analytics: analytics.md
       - Online Coverage: online_coverage.md
       - Code Quality: code_quality.md

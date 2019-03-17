@@ -5,5 +5,9 @@
     "yaml.format.singleQuote": true,
     "yaml.format.enable": true,
     "markdown.extension.toc.githubCompatibility": true,
-    "MarkdownPaste.path": "./assets/"
+    "MarkdownPaste.path": "./assets/",
+    "cSpell.words": [
+        "npmrc",
+        "webhooks"
+    ]
 }

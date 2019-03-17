@@ -1,5 +1,22 @@
 version: 2.1
 jobs:
+  stamp:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run:
+          name: Stamp build number into package.json
+          command: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
+      - run:
+          name: Create .npmrc file
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - package.json
+            - .npmrc
+
   docs:
     docker:
       - image: python:3.7.2
@@ -26,23 +43,6 @@ jobs:
           command: |
             chmod +x .circleci/push_docs_site.sh
             ./.circleci/push_docs_site.sh
-
-  stamp:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - run:
-          name: Stamp build number into package.json
-          command: sed -i "s/-dev/-${CIRCLE_BUILD_NUM}/g" package.json
-      - run:
-          name: Create .npmrc file
-          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - package.json
-            - .npmrc
 
   dependencies:
     docker:

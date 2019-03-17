@@ -1,7 +1,7 @@
 # TypeScript/JavaScript/Node CI/CD Template
 [![npm version](https://badge.fury.io/js/%40rcmedeiros%2Ftslint-config.svg)](https://badge.fury.io/js/%40rcmedeiros%2Ftslint-config)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@rcmedeiros/tslint-config.svg)
-[![CircleCI](https://circleci.com/gh/rcmedeiros/template.svg?style=svg&circle-token=0cbb60bd086a80279822859c0ed2610d5428a223)](https://circleci.com/gh/rcmedeiros/template)
+![CircleCI branch](https://img.shields.io/circleci/project/github/rcmedeiros/template/master.svg)
 [![Known Vulnerabilities](https://snyk.io/test/github/rcmedeiros/template/badge.svg?targetFile=package.json)](https://snyk.io/test/github/rcmedeiros/template?targetFile=package.json)
 [![codecov](https://codecov.io/gh/rcmedeiros/template/branch/master/graph/badge.svg?token=CJcGrQ0S58)](https://codecov.io/gh/rcmedeiros/template)
 [![Coverage Status](https://coveralls.io/repos/github/rcmedeiros/template/badge.svg?branch=master)](https://coveralls.io/github/rcmedeiros/template?branch=master)
