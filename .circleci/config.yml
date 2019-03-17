@@ -567,6 +567,25 @@ workflows:
                 - develop
                 - master
                 - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - audit_dependencies:
+          requires:
+            - dev_dependencies
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
+      - code_review:
+          requires:
+            - dev_dependencies
+            - dependencies
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+                - /release\/v\d+\.\d+\.\d+-(alpha|beta|rc)(\.\d){0,1}/
       - build:
           requires:
             - dev_dependencies

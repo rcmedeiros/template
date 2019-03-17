@@ -117,3 +117,9 @@ The same as a development one, except that failing to push the docs fails the wh
 ![](assets/release.png)
 
 Upon creating a tag matching a previously run *staging_commit*, the package is published accordingly. If it's a stable release, a manual approval is necessary.
+
+### random_commig
+
+![](assets/random_commit.png)
+
+In the event 
