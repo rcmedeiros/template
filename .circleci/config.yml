@@ -17,33 +17,6 @@ jobs:
             - package.json
             - .npmrc
 
-  docs:
-    docker:
-      - image: python:3.7.2
-    steps:
-      - checkout
-      - restore_cache:
-          key: pydependencies5-{{ checksum "mkdocs/requirements.txt" }}
-      - run:
-          name: Install Python dependencies
-          command: |
-            pip install -r mkdocs/requirements.txt
-      - save_cache:
-          key: pydependencies5-{{ checksum "mkdocs/requirements.txt" }}
-          paths:
-            - '/usr/local/lib/python3.7/site-packages'
-      - run:
-          name: Build site
-          command: python -m mkdocs build --strict --theme material --verbose
-      - add_ssh_keys:
-          fingerprints:
-            - '3a:91:1a:54:32:12:91:3f:6b:a5:25:8b:18:ec:ce:7c'
-      - run:
-          name: Push new version
-          command: |
-            chmod +x .circleci/push_docs_site.sh
-            ./.circleci/push_docs_site.sh
-
   dependencies:
     docker:
       - image: circleci/node:10
@@ -77,6 +50,33 @@ jobs:
           key: dev_dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
+
+  docs:
+    docker:
+      - image: python:3.7.2
+    steps:
+      - checkout
+      - restore_cache:
+          key: pydependencies5-{{ checksum "mkdocs/requirements.txt" }}
+      - run:
+          name: Install Python dependencies
+          command: |
+            pip install -r mkdocs/requirements.txt
+      - save_cache:
+          key: pydependencies5-{{ checksum "mkdocs/requirements.txt" }}
+          paths:
+            - '/usr/local/lib/python3.7/site-packages'
+      - run:
+          name: Build site
+          command: python -m mkdocs build --strict --theme material --verbose
+      - add_ssh_keys:
+          fingerprints:
+            - '3a:91:1a:54:32:12:91:3f:6b:a5:25:8b:18:ec:ce:7c'
+      - run:
+          name: Push new version
+          command: |
+            chmod +x .circleci/push_docs_site.sh
+            ./.circleci/push_docs_site.sh
 
   audit_dependencies:
     docker:
@@ -127,19 +127,30 @@ jobs:
           steps:
             - run:
                 name: Build for development
-                command:
-                  ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
-                  --skipLibCheck true --sourceMap false --listFiles true
-                  --listEmittedFiles true --declaration true
+                command: |
+                  ./node_modules/.bin/tsc -p tsconfig.json\
+                  --removeComments false\
+                  --listFiles true\
+                  --sourceMap false\
+                  --inlineSourceMap true\
+                  --inlineSources true\
+                  --listEmittedFiles true\
+                  --declaration true
       - unless:
           condition: << parameters.production >>
           steps:
             - run:
                 name: Build for production
-                command:
-                  ./node_modules/.bin/tsc -p tsconfig.json --skipLibCheck true
-                  --listFiles true --listEmittedFiles true --declaration true
-                  --sourceMap false --inlineSourceMap true --inlineSources true
+                command: |
+                  ./node_modules/.bin/tsc -p tsconfig.json\
+                  --removeComments true\
+                  --listFiles true\
+                  --sourceMap false\
+                  --inlineSourceMap false\
+                  --inlineSources false\
+                  --listEmittedFiles true\
+                  --declaration true
+
       - persist_to_workspace:
           root: ./
           paths:
@@ -548,3 +559,20 @@ workflows:
               ignore: /.*/
             tags:
               only: /v[0-9]+(\.[0-9]+)+(\.[0-9]+)/
+test:
+  jobs:
+    - build_prod:
+      production: true
+      requires:
+        - dev_dependencies
+      filters:
+        branches:
+          only:
+            - feature/docs
+    - build_dev:
+      requires:
+        - dev_dependencies
+      filters:
+        branches:
+          only:
+            - feature/docs
