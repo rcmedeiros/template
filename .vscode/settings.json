@@ -7,8 +7,10 @@
     "markdown.extension.toc.githubCompatibility": true,
     "MarkdownPaste.path": "./assets/",
     "cSpell.words": [
+        "dateness",
         "greenkeeper",
         "hotfix",
+        "lockfiles",
         "npmrc",
         "qube",
         "webhooks"
