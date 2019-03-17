@@ -127,29 +127,21 @@ jobs:
           steps:
             - run:
                 name: Build for development
-                command: |
-                  ./node_modules/.bin/tsc -p tsconfig.json\
-                  --removeComments=false\
-                  --listFiles=true\
-                  --sourceMap=false\
-                  --inlineSourceMap=true\
-                  --inlineSources=true\
-                  --listEmittedFiles=true\
-                  --declaration=true
+                command:
+                  ./node_modules/.bin/tsc -p tsconfig.json --removeComments
+                  false --listFiles true --sourceMap false --inlineSourceMap
+                  true --inlineSources true --listEmittedFiles true
+                  --declaration true
       - unless:
           condition: << parameters.production >>
           steps:
             - run:
                 name: Build for production
-                command: |
-                  ./node_modules/.bin/tsc -p tsconfig.json\
-                  --removeComments=true\
-                  --listFiles=true\
-                  --sourceMap=false\
-                  --inlineSourceMap=false\
-                  --inlineSources=false\
-                  --listEmittedFiles=true\
-                  --declaration=true
+                command:
+                  ./node_modules/.bin/tsc -p tsconfig.json --removeComments true
+                  --listFiles true --sourceMap false --inlineSourceMap false
+                  --inlineSources false --listEmittedFiles true --declaration
+                  true
 
       - persist_to_workspace:
           root: ./
