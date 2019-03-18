@@ -6,7 +6,7 @@ Coverage is a framework which runs your tests, keeping track of every linearly i
 
 [Istanbul](https://istanbul.js.org/) is the instrumentation tool, [nyc](https://github.com/istanbuljs/nyc) is its command line client. Simply precede your test command line with `nyc` and at the end of all tests and you'll get a report line this:
 
-![](assets/coverage_report.png)
+![Coverage Report](assets/coverage_report.png)
 
 If you wish to generate a neat HTML to visualize your code marked with coverage information, precede your test command with `nyc --reporter=html`
 
