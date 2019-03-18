@@ -37,11 +37,7 @@ nav:
               - Tests: tests.md
               - Mocks: mocks.md
               - Code Coverage: coverage.md
-      - Analytics:
-              - Monitoring: monitoring.md
-              - Analytics: analytics.md
-              - Online Coverage: online_coverage.md
-              - Code Quality: code_quality.md
+      - Analytics: analytics.md
       - Documentation:
               - MkDocs: mkdocs.md
               - ReadTheDocs: rtd.md
