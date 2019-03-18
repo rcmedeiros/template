@@ -4,7 +4,7 @@ Coverage is a framework which runs your tests, keeping track of every linearly i
 
 ## Istanbul
 
-[Istanbul](https://istanbul.js.org/) is the instrumentation tool, [nyc](https://github.com/istanbuljs/nyc) is its command line client. Simply precede your test command line with `nyc` and at the end of all tests and you'll get a report line this:
+[Istanbul](https://istanbul.js.org/) is the instrumentation tool, [nyc](https://github.com/istanbuljs/nyc) is its command line client. Simply precede your test command line with `nyc` and at the end of all tests you'll get a report line this:
 
 ![Coverage Report](assets/coverage_report.png)
 
