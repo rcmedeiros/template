@@ -822,7 +822,7 @@
 <li><strong>staging_commit</strong>: Commits to release or master branches;</li>
 <li><strong>release</strong>: Commits of release tags.</li>
 </ul>
-<p><img alt="" src="../assets/diagram.png" /></p>
+<p><img alt="Diagram" src="../assets/diagram.png" /></p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Open the <a href="https://github.com/rcmedeiros/template/blob/master/.circleci/config.yml">configuration</a> in another window for the text bellow to make sense.</p>
@@ -836,7 +836,7 @@ It&rsquo;ll also print the NPM Token to then <em>.npmrc</em> file, for unattende
 <h3 id="docs">docs</h3>
 <p>MkDocs documentation are freely and easily deployed to <a href="http://readthedocs.org">ReadTheDocs</a> through webhooks, and that should be a default approach. However, if your project isn&rsquo;t open source and you need the documentation deployed as a website, I wrote this job to generate the final HTML and push it back to the repository as an automated push. In this case, the folder is being watched and published by GitHub, but it might as well be an <code>htdocs</code> or <code>wwwroot</code> folder in a server elsewhere where files should go through SCP, or an AWS S3 hosted website pushed through AWS CLI. Unattended authentication will be implemented with SSH Keys.</p>
 <p>Open a term like Git Bash and run &lsquo;<code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code>&rsquo;. The e-mail is important, the password should <strong>NOT</strong> be set. You know you did it right if the private key starts with &ldquo;<code>-----BEGIN RSA PRIVATE KEY-----</code>&ldquo;</p>
-<p>Private key is kept with CircleCI, public key goes to the remote server. </p>
+<p>Private key is kept with CircleCI, public key goes to the remote server.</p>
 <p>To set up the public key:</p>
 <ul>
 <li>In GitHub, it&rsquo;s the path to the repository plus <code>/settings/keys</code> at the end;</li>
@@ -873,22 +873,22 @@ It&rsquo;ll also print the NPM Token to then <em>.npmrc</em> file, for unattende
 <p>Workspace is retrieved and published with an @alpha, @beta, @next (release candidate), or @latest (stable/default) tag according with the job&rsquo;s parameters.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>A branch is deemed a release branch if it&rsquo;s a valid <a href="https://semver.org/">SemVer</a> tag preceded with <em>&ldquo;release/v&rdquo;</em>. Release tags are the same, except there will be no <em>release/</em> preceding it. </p>
+<p>A branch is deemed a release branch if it&rsquo;s a valid <a href="https://semver.org/">SemVer</a> tag preceded with <em>&ldquo;release/v&rdquo;</em>. Release tags are the same, except there will be no <em>release/</em> preceding it.</p>
 <p>A commit to the master branch is always considered a stable version and must always be followed by a matching tag for publishing.</p>
 </div>
 <h2 id="workflows">Workflows</h2>
 <h3 id="development_commit">development_commit</h3>
-<p><img alt="" src="../assets/development_commit.png" /></p>
+<p><img alt="development_commit" src="../assets/development_commit.png" /></p>
 <p>Dependencies are retrieved, build number is stamped to the version, docs are generated an pushed, code is reviewed, dependencies are audited for security vulnerabilities, javascript is built and the whole system is tested. At the end, a new package is published under the tag <code>@dev</code>.</p>
 <h3 id="staging_commit">staging_commit</h3>
-<p><img alt="" src="../assets/staging_commit.png" /></p>
+<p><img alt="staging_commit" src="../assets/staging_commit.png" /></p>
 <p>The same as a development one, except that failing to push the docs fails the whole workflow, and the packaged is cached instead of published.</p>
 <h3 id="release">release</h3>
-<p><img alt="" src="../assets/release.png" /></p>
+<p><img alt="release" src="../assets/release.png" /></p>
 <p>Upon creating a tag matching a previously run <em>staging_commit</em>, the package is published accordingly. If it&rsquo;s a stable release, a manual approval is necessary.</p>
 <h3 id="random_commit">random_commit</h3>
-<p><img alt="" src="../assets/random_commit.png" /></p>
-<p>For any other commit unrelated to the development, release or master flow (maybe a hotfix, or a merged PR), the random_commit will kick in only to guarantee the reviews, audits and tests. </p>
+<p><img alt="random_commit" src="../assets/random_commit.png" /></p>
+<p>For any other commit unrelated to the development, release or master flow (maybe a hotfix, or a merged PR), the random_commit will kick in only to guarantee the reviews, audits and tests.</p>
                 
                   
                 
