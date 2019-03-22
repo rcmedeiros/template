@@ -1,5 +1,7 @@
 # Pipeline
 
+There are [countless options](https://blog.overops.com/jenkins-vs-travis-ci-vs-circle-ci-vs-teamcity-vs-codeship-vs-gitlab-ci-vs-bamboo/) for CI/CD tool, and all of them will suit most of your needs. I chose CircleCI just because I thought it faster to learn and I liked the UI.
+
 For this template, I built the pipeline with CircleCI. I already work with GitLab CI/CD and Travis is quite popular so I chose to try this. It pleased me very much the way I can write parameterized jobs and reuse them in different workflows, the different kinds of persistence, and for the clarity of the final Yaml. It's quite a platform.
 
 There are three workflows:
