@@ -3,6 +3,7 @@
 ___
 
 ## Table of Contents { #markdown data-toc-label='Table of Contents Alternative Label' }
+
 [toc](https://python-markdown.github.io/extensions/toc/)
 
 [TOC]
@@ -12,8 +13,8 @@ The above index was automatically generated with the marker [TOC]
 ___
 
 ## CodeHilite
-[codehilite](https://python-markdown.github.io/extensions/code_hilite/)
 
+[codehilite](https://python-markdown.github.io/extensions/code_hilite/)
 
 ```javascript hl_lines="4"
 function recurse(startingPlace, otherFunc, callback_one) {
@@ -38,7 +39,8 @@ For some reason I didn't get the line numbers to align correctly. I added the ex
 
 ___
 
-## SmartyPants 
+## SmartyPants
+
 [smarty](https://python-markdown.github.io/extensions/smarty/)
 
 'single quotes', "quotes", << angle quotes >>, ... (ellipsis) and dashes  -- and --- are converted to their HTML entity equivalents.
@@ -46,6 +48,7 @@ ___
 ___
 
 ## Footnotes
+
 [footnotes](https://python-markdown.github.io/extensions/footnotes/)
 Click on this[^1] or this[^2] footnotes and be taken to additional text at the bottom of the page.
 
@@ -65,11 +68,13 @@ Click on this[^1] or this[^2] footnotes and be taken to additional text at the b
 ___
 
 ## Attribute Lists
+
 [attr_list](https://python-markdown.github.io/extensions/attr_list/)
 
 ___
 
 ## Definition Lists
+
 [def_list](https://python-markdown.github.io/extensions/definition_lists/)
 
 Apple
@@ -82,6 +87,7 @@ Orange
 ___
 
 ## Abbreviations
+
 [abbr](https://python-markdown.github.io/extensions/abbreviations/)
 
 The HTML specification
@@ -93,6 +99,7 @@ is maintained by the W3C.
 ___
 
 ## New-Line-to-Break Extension
+
 [nl2br](https://python-markdown.github.io/extensions/nl2br/)
 
 Will cause newlines to be treated as hard breaks; like StackOverflow and GitHub flavored Markdown do.
@@ -100,6 +107,7 @@ Will cause newlines to be treated as hard breaks; like StackOverflow and GitHub 
 ___
 
 ## Admonition
+
 [admonition](https://python-markdown.github.io/extensions/admonition/)
 
 !!! attention
@@ -128,4 +136,3 @@ ___
 
 !!! warning
     This is a warning box
-

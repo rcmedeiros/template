@@ -10,7 +10,7 @@ There are three workflows:
 * **staging_commit**: Commits to release or master branches;
 * **release**: Commits of release tags.
 
-![](assets/diagram.png)
+![Diagram](assets/diagram.png)
 
 !!! hint
     Open the [configuration](https://github.com/rcmedeiros/template/blob/master/.circleci/config.yml) in another window for the text bellow to make sense.
@@ -32,7 +32,7 @@ MkDocs documentation are freely and easily deployed to [ReadTheDocs](http://read
 
 Open a term like Git Bash and run '`ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`'. The e-mail is important, the password should **NOT** be set. You know you did it right if the private key starts with "`-----BEGIN RSA PRIVATE KEY-----`"
 
-Private key is kept with CircleCI, public key goes to the remote server. 
+Private key is kept with CircleCI, public key goes to the remote server.
 
 To set up the public key:
 
@@ -96,7 +96,7 @@ Version is retrieved from package.json or branch name and saved to workspace for
 Workspace is retrieved and published with an @alpha, @beta, @next (release candidate), or @latest (stable/default) tag according with the job's parameters.
 
 !!! note
-    A branch is deemed a release branch if it's a valid [SemVer](https://semver.org/) tag preceded with *"release/v"*. Release tags are the same, except there will be no *release/* preceding it. 
+    A branch is deemed a release branch if it's a valid [SemVer](https://semver.org/) tag preceded with *"release/v"*. Release tags are the same, except there will be no *release/* preceding it.
 
     A commit to the master branch is always considered a stable version and must always be followed by a matching tag for publishing.
 
@@ -104,24 +104,24 @@ Workspace is retrieved and published with an @alpha, @beta, @next (release candi
 
 ### development_commit
 
-![](assets/development_commit.png)
+![development_commit](assets/development_commit.png)
 
 Dependencies are retrieved, build number is stamped to the version, docs are generated an pushed, code is reviewed, dependencies are audited for security vulnerabilities, javascript is built and the whole system is tested. At the end, a new package is published under the tag `@dev`.
 
 ### staging_commit
 
-![](assets/staging_commit.png)
+![staging_commit](assets/staging_commit.png)
 
 The same as a development one, except that failing to push the docs fails the whole workflow, and the packaged is cached instead of published.
 
 ### release
 
-![](assets/release.png)
+![release](assets/release.png)
 
 Upon creating a tag matching a previously run *staging_commit*, the package is published accordingly. If it's a stable release, a manual approval is necessary.
 
 ### random_commit
 
-![](assets/random_commit.png)
+![random_commit](assets/random_commit.png)
 
-For any other commit unrelated to the development, release or master flow (maybe a hotfix, or a merged PR), the random_commit will kick in only to guarantee the reviews, audits and tests. 
+For any other commit unrelated to the development, release or master flow (maybe a hotfix, or a merged PR), the random_commit will kick in only to guarantee the reviews, audits and tests.
