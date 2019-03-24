@@ -1,4 +1,7 @@
 # TypeScript/JavaScript/Node CI/CD Template
+
+See the [full documentation here](https://rcmedeiros.github.io/template/).
+
 [![npm version](https://badge.fury.io/js/%40rcmedeiros%2Ftslint-config.svg)](https://badge.fury.io/js/%40rcmedeiros%2Ftslint-config)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@rcmedeiros/tslint-config.svg)
 ![CircleCI branch](https://img.shields.io/circleci/project/github/rcmedeiros/template/master.svg)
