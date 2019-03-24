@@ -21,6 +21,7 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
   * branch release/ deploys with [@alpha, @beta or @next](https://docs.npmjs.com/cli/dist-tag) (release candidate) tags;
   * branch master submits to @latest. Those require manual approval.
 * Vulnerability checks by [npm-audit](https://docs.npmjs.com/cli/audit) and [Snyk](https://snyk.io/)
+* Dependencies *up-to-dateness* kept by [Greenkeeper](https://greenkeeper.io)
 * Compliance with [SemVer](https://semver.org/);
 * Tests are implemented with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
 * Test coverage assessed with [Istanbul.js](https://istanbul.js.org/).
@@ -29,10 +30,10 @@ A [TypeScript](https://github.com/trending/typescript) project that does very li
 * Lots of fine grained measurements by [Sonarcloud](https://sonarcloud.io)
 * Documentation hosted by [ReadTheDocs](https://readthedocs.org/).
 
+
 ## Up Next
 
 * Spies, Stubs and Mocks by [Sinon.JS](https://sinonjs.org/) (or maybe [JsMockito](https://jsmockito.org/))
-* [Greenkeeper](https://greenkeeper.io)
 
 ## And now Sonarcloud badges...
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=rcmedeiros_template&metric=bugs)](https://sonarcloud.io/dashboard?id=rcmedeiros_template)
