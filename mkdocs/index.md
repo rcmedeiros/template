@@ -1,4 +1,4 @@
-# Stark Docs
+# Docs
 
 At first I had this project privately to myself where I could copy-and-paste already sorted out configurations to other projects, I think everyone has one of those. Now it's public and others can take advantage of it.
 

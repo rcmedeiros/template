@@ -14,7 +14,7 @@ Mocha is a JavaScript testing framework, and the code to test is written in Type
 
 ## Chai
 
-To make the tests clearer and semantically pleasant, we use Chai. it's an assertion library and has the sole function of turning this:
+To make the tests semantically pleasant, we use Chai. it's an assertion library and has the sole function of turning this:
 
 ```Typescript
 assert.equal(res.status, 200);
@@ -28,4 +28,5 @@ res.status.should.be.equal(200);
  expect(res.status).to.be.equal(200);
 ```
 
-It may look foolish, but after a couple hundred tests, code that looks like description helps a lot.
+It may look foolish, but after a couple hundred tests, semantically pleasant code makes a difference.
+
