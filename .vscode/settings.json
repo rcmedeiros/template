@@ -33,6 +33,7 @@
         "qube",
         "recurse",
         "stackshare",
+        "stringify",
         "transpiles",
         "webhooks",
         "wwwroot"

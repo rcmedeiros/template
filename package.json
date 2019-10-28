@@ -54,28 +54,28 @@
   "homepage": "https://github.com/rcmedeiros/tslint-config#readme",
   "devDependencies": {
     "@rcmedeiros/tslint-config": "^1.0.2",
-    "@types/body-parser": "^1.17.0",
-    "@types/chai": "^4.1.7",
-    "@types/express": "^4.16.1",
+    "@types/body-parser": "^1.17.1",
+    "@types/chai": "^4.2.4",
+    "@types/express": "^4.17.1",
     "@types/figlet": "^1.2.0",
-    "@types/mocha": "^5.2.6",
+    "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "commitizen": "^3.1.1",
-    "coveralls": "^3.0.3",
+    "commitizen": "^3.1.2",
+    "coveralls": "^3.0.7",
     "cz-conventional-changelog": "^2.1.0",
-    "mocha": "^6.1.4",
-    "mocha-junit-reporter": "^1.22.0",
+    "mocha": "^6.2.2",
+    "mocha-junit-reporter": "^1.23.1",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^14.1.1",
-    "snyk": "^1.165.1",
-    "ts-node": "^8.1.0",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "snyk": "^1.239.0",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.17.0",
-    "figlet": "^1.2.1"
+    "express": "^4.17.1",
+    "figlet": "^1.2.4"
   }
 }
