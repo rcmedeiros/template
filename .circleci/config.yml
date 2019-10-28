@@ -23,14 +23,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Install production dependencies
           command: |
             chmod +x .circleci/install.sh
             ./.circleci/install.sh
       - save_cache:
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 
@@ -40,14 +40,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}
+          key: dev_dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Install development dependencies
           command: |
             chmod +x .circleci/install.sh
             ./.circleci/install.sh dev
       - save_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}
+          key: dev_dependencies-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 
@@ -83,6 +83,10 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
+      - restore_cache:
+          key: dependencies-{{ checksum "package-lock.json" }}
+      - restore_cache:
+          key: dev_dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Check for outdated packages
           command: npm outdated
@@ -102,9 +106,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "package-lock.json" }}
       - restore_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}
+          key: dev_dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Run TSLint
           command: |
@@ -124,7 +128,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dev_dependencies-{{ checksum "package.json" }}
+          key: dev_dependencies-{{ checksum "package-lock.json" }}
       - when:
           condition: << parameters.production >>
           steps:
@@ -158,10 +162,10 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore Development Dependencies
-          key: dev_dependencies-{{ checksum "package.json" }}
+          key: dev_dependencies-{{ checksum "package-lock.json" }}
       - restore_cache:
           name: Restore Dependencies
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Run Tests!
           command: |
