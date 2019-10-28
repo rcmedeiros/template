@@ -600,7 +600,7 @@
 <h2 id="ts-node">TS-Node</h2>
 <p>Mocha is a JavaScript testing framework, and the code to test is written in TypeScript. To make this work, we use ts-node, a TypeScript execution and <abbr title="read–eval–print loop">REPL</abbr> for node.js. In short, it transpiles the code on-the-fly, no need to build-ts or watch-ts. All you have to do is to add <code>--require ts-node/register</code> as a command line parameter.</p>
 <h2 id="chai">Chai</h2>
-<p>To make the tests clearer and semantically pleasant, we use Chai. it&rsquo;s an assertion library and has the sole function of turning this:</p>
+<p>To make the tests semantically pleasant, we use Chai. it&rsquo;s an assertion library and has the sole function of turning this:</p>
 <div class="codehilite" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">assert</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">equal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">res</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
 </pre></div>
 
@@ -612,7 +612,7 @@
 </pre></div>
 
 
-<p>It may look foolish, but after a couple hundred tests, code that looks like description helps a lot.</p>
+<p>It may look foolish, but after a couple hundred tests, semantically pleasant code makes a difference.</p>
                 
                   
                 
