@@ -377,6 +377,7 @@ workflows:
       - audit_dependencies:
           requires:
             - dev_dependencies
+            - dependencies
           filters:
             branches:
               only: develop
@@ -438,6 +439,7 @@ workflows:
       - audit_dependencies:
           requires:
             - dev_dependencies
+            - dependencies
           filters:
             branches:
               only:
@@ -573,6 +575,7 @@ workflows:
       - audit_dependencies:
           requires:
             - dev_dependencies
+            - dependencies
           filters:
             branches:
               ignore:
