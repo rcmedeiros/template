@@ -54,7 +54,7 @@
   "homepage": "https://github.com/rcmedeiros/tslint-config#readme",
   "devDependencies": {
     "@rcmedeiros/tslint-config": "^1.1.0-34",
-    "@types/body-parser": "^1.17.1",
+    "@types/body-parser": "^1.19.0",
     "@types/chai": "^4.2.4",
     "@types/express": "^4.17.1",
     "@types/figlet": "^1.2.0",
